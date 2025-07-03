@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1751520208.20626 "d:/02.Estudios/1.UNI/05.SISTEMAS OPERATIVOS/PRESENTACION FINAL/diapositivas/presentacion.tex" "presentacion.pdf" "presentacion" 1751520213.55352 0
+["pdflatex"] 1751521064.80404 "d:/02.Estudios/1.UNI/05.SISTEMAS OPERATIVOS/PRESENTACION FINAL/diapositivas/presentacion.tex" "presentacion.pdf" "presentacion" 1751521068.06499 0
   "C:/Users/gusta/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1751517289 83665 e74152440a79c80045ec5ef3cd1f6917 ""
   "C:/Users/gusta/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcss0900.pk" 1751518222 9548 29f2ac27151494471b4b5a74f8120d89 ""
   "C:/Users/gusta/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1748304387 13159325 e3e11ae577b754d0485670f6f7c968ab ""
@@ -230,18 +230,18 @@
   "C:/Users/gusta/AppData/Local/Programs/MiKTeX/tex/latex/translator/translator.sty" 1622471510 8765 56d370785f0143111ff9898b5adfe08e ""
   "C:/Users/gusta/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/gusta/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "d:/02.Estudios/1.UNI/05.SISTEMAS OPERATIVOS/PRESENTACION FINAL/diapositivas/presentacion.tex" 1751520207 10984 5452a19948aceb4deaad0ec83d883abd ""
+  "d:/02.Estudios/1.UNI/05.SISTEMAS OPERATIVOS/PRESENTACION FINAL/diapositivas/presentacion.tex" 1751521064 11010 494e36fa8471fe67bf65b5b50c0ac20a ""
   "imagenes/11.ConexionWifi.png" 1751510423 336413 649f9e42dff5eaab1d56ca2d5392c4b4 ""
   "imagenes/12.PruebasDiversas.png" 1751510421 350502 6b4436fc580a8665af97e7a0c6df705e ""
   "imagenes/13.PruebasFinaales.png" 1751510418 337164 b8e6654fc951183de83243bad5f101d4 ""
   "imagenes/7.VisualizaciondeDatos.png" 1751510436 140565 02cf602ee4bd98b1c53f69e6ba3f3713 ""
   "imagenes/f01_ESP32.jpg" 1751510416 62999 7e29f8d71b2687586ce4ecba5c5ff39d ""
   "imagenes/uni.png" 1751510374 148096 c083001b2121d99bbeb273e8a1ff2586 ""
-  "presentacion.aux" 1751520213 6958 80339d0d981b97a17c88221be667d09a "pdflatex"
-  "presentacion.nav" 1751520213 2842 c545907ad640bd29b0ef4811770ac19e "pdflatex"
-  "presentacion.tex" 1751520207 10984 5452a19948aceb4deaad0ec83d883abd ""
-  "presentacion.toc" 1751520213 464 ba8507b989b370ab7c0cecadd6703084 "pdflatex"
-  "presentacion.vrb" 1751520211 686 7cb17abf8fe44fd6348454f616fd7e52 "pdflatex"
+  "presentacion.aux" 1751521067 6958 80339d0d981b97a17c88221be667d09a "pdflatex"
+  "presentacion.nav" 1751521067 2842 c545907ad640bd29b0ef4811770ac19e "pdflatex"
+  "presentacion.tex" 1751521064 11010 494e36fa8471fe67bf65b5b50c0ac20a ""
+  "presentacion.toc" 1751521067 464 ba8507b989b370ab7c0cecadd6703084 "pdflatex"
+  "presentacion.vrb" 1751521066 688 8266ade99b5046c210adc17011eb8aac "pdflatex"
   (generated)
   "presentacion.aux"
   "presentacion.log"

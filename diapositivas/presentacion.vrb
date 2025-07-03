@@ -17,4 +17,4 @@ while True:
   \node at (0.49\textwidth,0.2) {\footnotesize\textbf{Ciclo básico}: Medir → Decidir → Actuar → Reportar};
 \end{tikzpicture}
 
-\presenternote{"Como nuestro ciclo diario: despertar, trabajar, comer, dormir... pero para dispositivos"}
+\presenternote{``Como nuestro ciclo diario: despertar, trabajar, comer, dormir... pero para dispositivos''}

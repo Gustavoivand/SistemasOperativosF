@@ -1,6 +1,6 @@
 \documentclass{beamer}
 \usetheme{Madrid}
-\usecolortheme[named=orange]{structure}
+\usecolortheme[named=blue]{structure}
 
 % Paquetes necesarios
 \usepackage{graphicx}
@@ -45,7 +45,7 @@
 % Portada
 \begin{frame}
   \titlepage
-  \presenternote{Saludo inicial: "Buenos días/tardes, hoy presentaremos un sistema inteligente que monitorea y controla ambientes automáticamente"}
+  %\presenternote{Saludo inicial: "Buenos días/tardes, hoy presentaremos un sistema inteligente que monitorea y controla ambientes automáticamente"}
 \end{frame}
 
 % Índice
@@ -61,7 +61,7 @@
     \item Sistema inteligente que monitorea temperatura y humedad
     \item Control automático de ventiladores y luces
     \item Funciona con tecnología similar a los dispositivos domésticos inteligentes
-    \item Sistema que "piensa" por sí mismo usando MicroPython
+    \item Sistema que ``piensa'' por sí mismo usando MicroPython
     \pause
     \item \textcolor{orange}{Resultados:} Funcionamiento estable y eficiente
   \end{itemize}
@@ -72,7 +72,7 @@
     \node at (0.49\textwidth,0.25) {\footnotesize\textbf{Analogía}: Como un mayordomo digital que vigila y ajusta el ambiente};
   \end{tikzpicture}
   
-  \presenternote{Comparar con termostatos inteligentes: "Es similar a un Nest o sistema domótico pero más especializado"}
+  %\presenternote{Comparar con termostatos inteligentes: "Es similar a un Nest o sistema domótico pero más especializado"}
 \end{frame}
 
 % 2. Introducción
@@ -94,7 +94,7 @@
     \end{itemize}
   \end{exampleblock}
   
-  \presenternote{Ejemplo práctico: "En invernaderos, fábricas o incluso hogares donde necesitas mantener condiciones específicas"}
+  \presenternote{Ejemplo práctico: ``En invernaderos, fábricas o incluso hogares donde necesitas mantener condiciones específicas''}
 \end{frame}
 
 % 3. Estado del Arte
@@ -103,7 +103,7 @@
   \begin{columns}
     \column{0.6\textwidth}
     \begin{itemize}
-      \item \textbf{ESP32}: El "cerebro" del sistema (como un mini-computador)
+      \item \textbf{ESP32}: El ``cerebro'' del sistema (como un mini-computador)
       \item \textbf{MicroPython}: Lenguaje para programar el dispositivo
       \item \textbf{FreeRTOS}: Sistema que gestiona tareas simultáneas
       \item \textbf{MQTT}: Protocolo de comunicación (como WhatsApp para dispositivos)
@@ -118,7 +118,7 @@
     \node at (0.49\textwidth,0.25) {\footnotesize\textbf{FreeRTOS} = Jefe que coordina múltiples trabajadores};
   \end{tikzpicture}
   
-  \presenternote{"FreeRTOS es como el director de orquesta que coordina todos los instrumentos"}
+  \presenternote{``FreeRTOS es como el director de orquesta que coordina todos los instrumentos''}
 \end{frame}
 
 % 4. Arquitectura y Desarrollo
@@ -137,7 +137,7 @@
       \captionof{figure}{Visualización de datos en tiempo real}
   \end{columns}
   
-  \presenternote{"Pueden ver en la imagen cómo se muestran los datos que recoge el sistema"}
+  \presenternote{``Pueden ver en la imagen cómo se muestran los datos que recoge el sistema''}
 \end{frame}
 
 \begin{frame}{Gestión inteligente de tareas}
@@ -159,12 +159,12 @@
     FreeRTOS permite hacer múltiples tareas a la vez como un malabarista experto
   \end{alertblock}
   
-  \presenternote{"Imaginen un chef que cocina, vigila el horno y atiende pedidos al mismo tiempo - así funciona nuestro sistema"}
+  \presenternote{``Imaginen un chef que cocina, vigila el horno y atiende pedidos al mismo tiempo - así funciona nuestro sistema''}
 \end{frame}
 
 % 5. Código Clave
 \section{El lenguaje del sistema}
-\begin{frame}[fragile]{Cómo "piensa" el dispositivo}
+\begin{frame}[fragile]{Cómo ``piensa'' el dispositivo}
 \begin{lstlisting}[language=Python]
 # Configuración de un LED inteligente
 class LED:
@@ -182,7 +182,7 @@ class LED:
   \node at (0.49\textwidth,0.2) {\footnotesize\textbf{Explicación}: El sistema ajusta luces automáticamente según necesidades};
 \end{tikzpicture}
 
-\presenternote{"Este código es como las instrucciones que le damos al sistema para controlar las luces eficientemente"}
+\presenternote{``Este código es como las instrucciones que le damos al sistema para controlar las luces eficientemente''}
 \end{frame}
 
 \begin{frame}[fragile]{Toma de decisiones automática}
@@ -204,7 +204,7 @@ while True:
   \node at (0.49\textwidth,0.2) {\footnotesize\textbf{Ciclo básico}: Medir → Decidir → Actuar → Reportar};
 \end{tikzpicture}
 
-\presenternote{"Como nuestro ciclo diario: despertar, trabajar, comer, dormir... pero para dispositivos"}
+\presenternote{``Como nuestro ciclo diario: despertar, trabajar, comer, dormir... pero para dispositivos''}
 \end{frame}
 
 % 6. Comparativa de Rendimiento
@@ -230,7 +230,7 @@ while True:
     \node at (0.49\textwidth,0.2) {\footnotesize\textbf{Interpretación}: Responde más rápido y maneja más información};
   \end{tikzpicture}
   
-  \presenternote{"15ms es más rápido que un parpadeo humano (100-300ms)"}
+  \presenternote{``15ms es más rápido que un parpadeo humano (100-300ms)''}
 \end{frame}
 
 % 7. Resultados Experimentales
@@ -259,7 +259,7 @@ while True:
       \end{figure}
   \end{columns}
   
-  \presenternote{"En estas imágenes podemos ver el sistema en acción durante nuestras pruebas"}
+  \presenternote{``En estas imágenes podemos ver el sistema en acción durante nuestras pruebas''}
 \end{frame}
 
 % 8. Conclusiones y Futuro
@@ -282,7 +282,7 @@ while True:
     \end{itemize}
   \end{exampleblock}
   
-  \presenternote{"En un invernadero, esto podría prevenir pérdidas por heladas o calor excesivo automáticamente"}
+  \presenternote{``En un invernadero, esto podría prevenir pérdidas por heladas o calor excesivo automáticamente''}
 \end{frame}
 
 \begin{frame}{Futuras mejoras}
@@ -299,7 +299,7 @@ while True:
   \end{columns}
   
   \vspace{5mm}
-  \presenternote{"Imaginen controlar todo con un 'Hola dispositivo, ajusta la temperatura a 22°C'"}
+  \presenternote{``Imaginen controlar todo con un 'Hola dispositivo, ajusta la temperatura a 22°C'''}
 \end{frame}
 
 \begin{frame}{Gracias}
