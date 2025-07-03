@@ -1,0 +1,447 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global/global}
+    \entry{IoT_RoboticArm}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=ecdec47614d7d4d18d3549408ee2074f}{%
+           family={Ahmed},
+           familyi={A\bibinitperiod},
+           given={Anwer\bibnamedelima Sabah},
+           giveni={A\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=c3c67fa7b4af159077ae50bd34ad1bae}{%
+           family={Marzog},
+           familyi={M\bibinitperiod},
+           given={Heyam\bibnamedelima A.},
+           giveni={H\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=ec1e428caff270b17417f96a2e7b2ea5}{%
+           family={Abdul-Rahaim},
+           familyi={A\bibinithyphendelim R\bibinitperiod},
+           given={Laith\bibnamedelima Ali},
+           giveni={L\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \strng{namehash}{1cb3f4978e8d9f6dbfbd52d828b41fb6}
+      \strng{fullhash}{1cb3f4978e8d9f6dbfbd52d828b41fb6}
+      \strng{fullhashraw}{1cb3f4978e8d9f6dbfbd52d828b41fb6}
+      \strng{bibnamehash}{1cb3f4978e8d9f6dbfbd52d828b41fb6}
+      \strng{authorbibnamehash}{1cb3f4978e8d9f6dbfbd52d828b41fb6}
+      \strng{authornamehash}{1cb3f4978e8d9f6dbfbd52d828b41fb6}
+      \strng{authorfullhash}{1cb3f4978e8d9f6dbfbd52d828b41fb6}
+      \strng{authorfullhashraw}{1cb3f4978e8d9f6dbfbd52d828b41fb6}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2722-2578}
+      \field{journaltitle}{International Journal of Electrical and Computer Engineering (IJECE)}
+      \field{number}{5}
+      \field{title}{Design and implement of robotic arm and control of moving via IoT with Arduino ESP32}
+      \field{volume}{11}
+      \field{year}{2021}
+      \field{pages}{3924\bibrangedash 3933}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.11591/ijece.v11i5.pp3924-3933
+      \endverb
+      \verb{urlraw}
+      \verb https://ijece.iaescore.com/index.php/IJECE/article/view/24625
+      \endverb
+      \verb{url}
+      \verb https://ijece.iaescore.com/index.php/IJECE/article/view/24625
+      \endverb
+    \endentry
+    \entry{SmartHomeESP32}{incollection}{}{}
+      \name{author}{2}{}{%
+        {{hash=d1055027f9f952d908f38796b226af57}{%
+           family={Babiuch},
+           familyi={B\bibinitperiod},
+           given={Marek},
+           giveni={M\bibinitperiod}}}%
+        {{hash=e0212dfac292fc6a5f7f0168a9d403cc}{%
+           family={Postulka},
+           familyi={P\bibinitperiod},
+           given={Jiri},
+           giveni={J\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=b10d4c5587026b60bf8f9a93528f2e1f}{%
+           family={Márquez},
+           familyi={M\bibinitperiod},
+           given={Fausto\bibnamedelimb Pedro\bibnamedelima García},
+           giveni={F\bibinitperiod\bibinitdelim P\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Rijeka}%
+      }
+      \list{publisher}{1}{%
+        {IntechOpen}%
+      }
+      \strng{namehash}{3e35f7eaf8134eb8d69e168b6dbf9101}
+      \strng{fullhash}{3e35f7eaf8134eb8d69e168b6dbf9101}
+      \strng{fullhashraw}{3e35f7eaf8134eb8d69e168b6dbf9101}
+      \strng{bibnamehash}{3e35f7eaf8134eb8d69e168b6dbf9101}
+      \strng{authorbibnamehash}{3e35f7eaf8134eb8d69e168b6dbf9101}
+      \strng{authornamehash}{3e35f7eaf8134eb8d69e168b6dbf9101}
+      \strng{authorfullhash}{3e35f7eaf8134eb8d69e168b6dbf9101}
+      \strng{authorfullhashraw}{3e35f7eaf8134eb8d69e168b6dbf9101}
+      \strng{editorbibnamehash}{b10d4c5587026b60bf8f9a93528f2e1f}
+      \strng{editornamehash}{b10d4c5587026b60bf8f9a93528f2e1f}
+      \strng{editorfullhash}{b10d4c5587026b60bf8f9a93528f2e1f}
+      \strng{editorfullhashraw}{b10d4c5587026b60bf8f9a93528f2e1f}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Internet of Things}
+      \field{chapter}{6}
+      \field{title}{Smart Home Monitoring System Using ESP32 Microcontrollers}
+      \field{year}{2020}
+      \verb{doi}
+      \verb 10.5772/intechopen.94589
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.5772/intechopen.94589
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.5772/intechopen.94589
+      \endverb
+    \endentry
+    \entry{ESP32Characterization}{article}{}{}
+      \name{author}{6}{}{%
+        {{hash=57834b95ba7263261e4752db10751cca}{%
+           family={Espinosa-Gavira},
+           familyi={E\bibinithyphendelim G\bibinitperiod},
+           given={M.\bibnamedelimi J.},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=d621e813ad29d471b74f0b747df35925}{%
+           family={Agüera-Pérez},
+           familyi={A\bibinithyphendelim P\bibinitperiod},
+           given={Agustín},
+           giveni={A\bibinitperiod}}}%
+        {{hash=81111e312b3f4e7a32a5bf9d992975aa}{%
+           family={Palomares-Salas},
+           familyi={P\bibinithyphendelim S\bibinitperiod},
+           given={J.C.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=35eba4f2596e58dd4ce2b37cd8a7974a}{%
+           family={Sierra-Fernandez},
+           familyi={S\bibinithyphendelim F\bibinitperiod},
+           given={Jose\bibnamedelima Maria},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=0d3d4575b0c05939d73e3b0aa80f1825}{%
+           family={Remigio-Carmona},
+           familyi={R\bibinithyphendelim C\bibinitperiod},
+           given={Paula},
+           giveni={P\bibinitperiod}}}%
+        {{hash=53068cf961f590e4dd78a12d42b169fa}{%
+           family={de-la-Rosa},
+           familyi={R\bibinitperiod},
+           given={Juan\bibnamedelimb José\bibnamedelima González},
+           giveni={J\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{5f653f122fd332211233dbc69c87258d}
+      \strng{fullhash}{0229e59f3b7e8d734a35c9305bca0524}
+      \strng{fullhashraw}{0229e59f3b7e8d734a35c9305bca0524}
+      \strng{bibnamehash}{5f653f122fd332211233dbc69c87258d}
+      \strng{authorbibnamehash}{5f653f122fd332211233dbc69c87258d}
+      \strng{authornamehash}{5f653f122fd332211233dbc69c87258d}
+      \strng{authorfullhash}{0229e59f3b7e8d734a35c9305bca0524}
+      \strng{authorfullhashraw}{0229e59f3b7e8d734a35c9305bca0524}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Procedia Computer Science}
+      \field{title}{Characterization and Performance Evaluation of ESP32 for Real-time Synchronized Sensor Networks}
+      \field{volume}{237}
+      \field{year}{2024}
+      \field{pages}{261\bibrangedash 268}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1016/j.procs.2024.05.104
+      \endverb
+    \endentry
+    \entry{IoT_AirQuality}{misc}{}{}
+      \name{author}{3}{}{%
+        {{hash=1952f11a5c7e45543c6a2781f8462c79}{%
+           family={Flores-Cortez},
+           familyi={F\bibinithyphendelim C\bibinitperiod},
+           given={Omar\bibnamedelima Otoniel},
+           giveni={O\bibinitperiod\bibinitdelim O\bibinitperiod}}}%
+        {{hash=1e88b81cdfeb1f3d217446f62862ce65}{%
+           family={Cortez},
+           familyi={C\bibinitperiod},
+           given={Ronny\bibnamedelima Adalberto},
+           giveni={R\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=fdee96d3e56684ebba0ccbc3b836bd9e}{%
+           family={Rosa},
+           familyi={R\bibinitperiod},
+           given={Veronica},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{88f849e6b473b7b6a1416d29d247fcc8}
+      \strng{fullhash}{88f849e6b473b7b6a1416d29d247fcc8}
+      \strng{fullhashraw}{88f849e6b473b7b6a1416d29d247fcc8}
+      \strng{bibnamehash}{88f849e6b473b7b6a1416d29d247fcc8}
+      \strng{authorbibnamehash}{88f849e6b473b7b6a1416d29d247fcc8}
+      \strng{authornamehash}{88f849e6b473b7b6a1416d29d247fcc8}
+      \strng{authorfullhash}{88f849e6b473b7b6a1416d29d247fcc8}
+      \strng{authorfullhashraw}{88f849e6b473b7b6a1416d29d247fcc8}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprintclass}{eess.SY}
+      \field{eprinttype}{arXiv}
+      \field{title}{Implementacion de un sistema IoT de bajo costo para el monitoreo de la calidad del aire en El Salvador}
+      \field{year}{2022}
+      \verb{doi}
+      \verb 10.48550/arXiv.2207.09975
+      \endverb
+      \verb{eprint}
+      \verb 2207.09975
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/2207.09975
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/2207.09975
+      \endverb
+    \endentry
+    \entry{ESP32_Devices}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=b6b408f10a6b013a6358710f8df00ba3}{%
+           family={Hercog},
+           familyi={H\bibinitperiod},
+           given={Darko},
+           giveni={D\bibinitperiod}}}%
+        {{hash=7a89337ca01e7fb3e14419145396e54d}{%
+           family={Lerher},
+           familyi={L\bibinitperiod},
+           given={Tone},
+           giveni={T\bibinitperiod}}}%
+        {{hash=ec3afedb626c711876e66d4b978abf20}{%
+           family={Truntic},
+           familyi={T\bibinitperiod},
+           given={Mitja},
+           giveni={M\bibinitperiod}}}%
+        {{hash=18d172c5f14c8400eec7fdc62876a4b6}{%
+           family={Tezak},
+           familyi={T\bibinitperiod},
+           given={Oto},
+           giveni={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{8cbe8703d7eb51270597fc4b991eaa30}
+      \strng{fullhash}{68a023beaaa6a7276f0285602eb18aa1}
+      \strng{fullhashraw}{68a023beaaa6a7276f0285602eb18aa1}
+      \strng{bibnamehash}{8cbe8703d7eb51270597fc4b991eaa30}
+      \strng{authorbibnamehash}{8cbe8703d7eb51270597fc4b991eaa30}
+      \strng{authornamehash}{8cbe8703d7eb51270597fc4b991eaa30}
+      \strng{authorfullhash}{68a023beaaa6a7276f0285602eb18aa1}
+      \strng{authorfullhashraw}{68a023beaaa6a7276f0285602eb18aa1}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1424-8220}
+      \field{journaltitle}{Sensors}
+      \field{number}{15}
+      \field{title}{Design and Implementation of ESP32-Based IoT Devices}
+      \field{volume}{23}
+      \field{year}{2023}
+      \verb{doi}
+      \verb 10.3390/s23156739
+      \endverb
+      \verb{urlraw}
+      \verb https://www.mdpi.com/1424-8220/23/15/6739
+      \endverb
+      \verb{url}
+      \verb https://www.mdpi.com/1424-8220/23/15/6739
+      \endverb
+    \endentry
+    \entry{LowCostSCADA}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=addc27d77178a1140b7ad2c2d0ce1b0e}{%
+           family={Lawrence\bibnamedelimb O.\bibnamedelimi Aghenta},
+           familyi={L\bibinitperiod\bibinitdelim O\bibinitperiod\bibinitdelim A\bibinitperiod},
+           given={M.\bibnamedelimi Tariq\bibnamedelima Iqbal},
+           giveni={M\bibinitperiod\bibinitdelim T\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
+      }
+      \strng{namehash}{addc27d77178a1140b7ad2c2d0ce1b0e}
+      \strng{fullhash}{addc27d77178a1140b7ad2c2d0ce1b0e}
+      \strng{fullhashraw}{addc27d77178a1140b7ad2c2d0ce1b0e}
+      \strng{bibnamehash}{addc27d77178a1140b7ad2c2d0ce1b0e}
+      \strng{authorbibnamehash}{addc27d77178a1140b7ad2c2d0ce1b0e}
+      \strng{authornamehash}{addc27d77178a1140b7ad2c2d0ce1b0e}
+      \strng{authorfullhash}{addc27d77178a1140b7ad2c2d0ce1b0e}
+      \strng{authorfullhashraw}{addc27d77178a1140b7ad2c2d0ce1b0e}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{AIMS Electronics and Electrical Engineering}
+      \field{title}{Design and Implementation of a Low-cost, Open-source IoT-based SCADA system using ESP32 with OLED, ThingsBoard and MQTT protocol}
+      \field{volume}{4}
+      \field{year}{2020}
+      \field{pages}{57\bibrangedash 86}
+      \range{pages}{30}
+      \verb{doi}
+      \verb 10.3934/ElectrEng.2020.1.57
+      \endverb
+    \endentry
+    \entry{CapacidadESP32}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=b4f8c8ed4475c405e18a5165a579b6cc}{%
+           family={Romero},
+           familyi={R\bibinitperiod},
+           given={Ciro\bibnamedelima Edgardo},
+           giveni={C\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=e0a300873ddfee6314696890eca98ce3}{%
+           family={Elustondo},
+           familyi={E\bibinitperiod},
+           given={Alejandro},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{6b76ff90038a14ab616ba769de6ed3bb}
+      \strng{fullhash}{6b76ff90038a14ab616ba769de6ed3bb}
+      \strng{fullhashraw}{6b76ff90038a14ab616ba769de6ed3bb}
+      \strng{bibnamehash}{6b76ff90038a14ab616ba769de6ed3bb}
+      \strng{authorbibnamehash}{6b76ff90038a14ab616ba769de6ed3bb}
+      \strng{authornamehash}{6b76ff90038a14ab616ba769de6ed3bb}
+      \strng{authorfullhash}{6b76ff90038a14ab616ba769de6ed3bb}
+      \strng{authorfullhashraw}{6b76ff90038a14ab616ba769de6ed3bb}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Revista elektron}
+      \field{number}{1}
+      \field{title}{Análisis de la capacidad de la placa ESP32 para integrar sistemas IoT descentralizados}
+      \field{volume}{6}
+      \field{year}{2022}
+      \field{pages}{41\bibrangedash 45}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.37537/rev.elektron.6.1.142.2022
+      \endverb
+    \endentry
+    \entry{IoT_FireDetection}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=fc24c3c7d272b34b52de44daa4305a7a}{%
+           family={{Subbarayudu, Yerragudipadu}},
+           familyi={S\bibinitperiod}}}%
+        {{hash=1b1270fe5653b9159efa64c2ca17c933}{%
+           family={{Vijendar Reddy, Gurram}},
+           familyi={V\bibinitperiod}}}%
+        {{hash=f8a0c86daac5683b2f88cc4ef5653aad}{%
+           family={{Bhargavi, Jammi}},
+           familyi={B\bibinitperiod}}}%
+        {{hash=a9970f5c275bcb5f04b92949868a70ee}{%
+           family={{Latha, Kadavath}},
+           familyi={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{8f247e0452d7e65d0836ba5359beec97}
+      \strng{fullhash}{f883708d4b96528f3e54657e0d7e63e9}
+      \strng{fullhashraw}{f883708d4b96528f3e54657e0d7e63e9}
+      \strng{bibnamehash}{8f247e0452d7e65d0836ba5359beec97}
+      \strng{authorbibnamehash}{8f247e0452d7e65d0836ba5359beec97}
+      \strng{authornamehash}{8f247e0452d7e65d0836ba5359beec97}
+      \strng{authorfullhash}{f883708d4b96528f3e54657e0d7e63e9}
+      \strng{authorfullhashraw}{f883708d4b96528f3e54657e0d7e63e9}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{MATEC Web Conf.}
+      \field{title}{An Efficient IoT-Based Novel Approach for Fire Detection Through Esp 32 Microcontroller in Forest Areas}
+      \field{volume}{392}
+      \field{year}{2024}
+      \field{pages}{01109}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1051/matecconf/202439201109
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1051/matecconf/202439201109
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1051/matecconf/202439201109
+      \endverb
+    \endentry
+    \entry{WirelessAdventureESP32}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=b1d5d0040be4721ebd66cd10ec68502c}{%
+           family={Systems},
+           familyi={S\bibinitperiod},
+           given={Espressif},
+           giveni={E\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Espressif Systems}%
+      }
+      \strng{namehash}{b1d5d0040be4721ebd66cd10ec68502c}
+      \strng{fullhash}{b1d5d0040be4721ebd66cd10ec68502c}
+      \strng{fullhashraw}{b1d5d0040be4721ebd66cd10ec68502c}
+      \strng{bibnamehash}{b1d5d0040be4721ebd66cd10ec68502c}
+      \strng{authorbibnamehash}{b1d5d0040be4721ebd66cd10ec68502c}
+      \strng{authornamehash}{b1d5d0040be4721ebd66cd10ec68502c}
+      \strng{authorfullhash}{b1d5d0040be4721ebd66cd10ec68502c}
+      \strng{authorfullhashraw}{b1d5d0040be4721ebd66cd10ec68502c}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{ESP32-C3 Wireless Adventure: A Comprehensive Guide to IoT}
+      \field{year}{2023}
+    \endentry
+    \entry{HandsOnESP32}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=b7a259897baf4dd4f0add33d61a25b39}{%
+           family={Zulfiqar},
+           familyi={Z\bibinitperiod},
+           given={Asim},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Packt Publishing}%
+      }
+      \strng{namehash}{b7a259897baf4dd4f0add33d61a25b39}
+      \strng{fullhash}{b7a259897baf4dd4f0add33d61a25b39}
+      \strng{fullhashraw}{b7a259897baf4dd4f0add33d61a25b39}
+      \strng{bibnamehash}{b7a259897baf4dd4f0add33d61a25b39}
+      \strng{authorbibnamehash}{b7a259897baf4dd4f0add33d61a25b39}
+      \strng{authornamehash}{b7a259897baf4dd4f0add33d61a25b39}
+      \strng{authorfullhash}{b7a259897baf4dd4f0add33d61a25b39}
+      \strng{authorfullhashraw}{b7a259897baf4dd4f0add33d61a25b39}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-1-83763-803-1}
+      \field{title}{Hands-on ESP32 with Arduino IDE: Unleash the power of IoT with ESP32 and build exciting projects with this practical guide}
+      \field{year}{2024}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

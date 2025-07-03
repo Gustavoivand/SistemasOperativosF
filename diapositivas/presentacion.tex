@@ -1,0 +1,318 @@
+\documentclass{beamer}
+\usetheme{Madrid}
+\usecolortheme[named=orange]{structure}
+
+% Paquetes necesarios
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{multicol}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{bookmark}
+
+% Pie de página con número
+\setbeamertemplate{footline}[page number]
+
+% Configuración de listings para código
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray},
+  stringstyle=\color{orange},
+  showstringspaces=false,
+  breaklines=true,
+  frame=single,
+  literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {ñ}{{\~n}}1
+}
+\graphicspath{ {imagenes/} }
+
+% Datos de portada
+\title{Control Inteligente de Ambientes con Tecnología IoT}
+\subtitle{Sistema Automatizado usando MicroPython y FreeRTOS}
+\author{Alex Vega, Jean Paul Mori, Gustavo Delgado}
+\institute{Universidad Nacional de Ingeniería}
+\date{\today}
+
+% Comando para notas del presentador
+\newcommand{\presenternote}[1]{\footnotesize{\textcolor{gray}{[Nota: #1]}}}
+
+\begin{document}
+
+% Portada
+\begin{frame}
+  \titlepage
+  \presenternote{Saludo inicial: "Buenos días/tardes, hoy presentaremos un sistema inteligente que monitorea y controla ambientes automáticamente"}
+\end{frame}
+
+% Índice
+\begin{frame}{Qué veremos hoy}
+  \tableofcontents[hideallsubsections]
+  %\presenternote{Explicar brevemente cada sección: "Primero entenderemos el sistema, luego cómo funciona internamente, veremos resultados prácticos y finalmente conclusiones"}
+\end{frame}
+
+% 1. Resumen
+\section{Resumen}
+\begin{frame}{Resumen en 1 minuto}
+  \begin{itemize}
+    \item Sistema inteligente que monitorea temperatura y humedad
+    \item Control automático de ventiladores y luces
+    \item Funciona con tecnología similar a los dispositivos domésticos inteligentes
+    \item Sistema que "piensa" por sí mismo usando MicroPython
+    \pause
+    \item \textcolor{orange}{Resultados:} Funcionamiento estable y eficiente
+  \end{itemize}
+  
+  \vspace{5mm}
+  \begin{tikzpicture}
+    \draw[orange, fill=orange!20] (0,0) rectangle (0.98\textwidth,0.5);
+    \node at (0.49\textwidth,0.25) {\footnotesize\textbf{Analogía}: Como un mayordomo digital que vigila y ajusta el ambiente};
+  \end{tikzpicture}
+  
+  \presenternote{Comparar con termostatos inteligentes: "Es similar a un Nest o sistema domótico pero más especializado"}
+\end{frame}
+
+% 2. Introducción
+\section{Introducción}
+\begin{frame}{Motivación y Objetivos}
+  \begin{block}{Problema a resolver}
+    \begin{itemize}
+      \item Mantener condiciones ambientales óptimas
+      \item Reducir consumo energético
+      \item Evitar supervisión humana constante
+    \end{itemize}
+  \end{block}
+  \pause
+  \begin{exampleblock}{Nuestra solución}
+    \begin{itemize}
+      \item Dispositivo compacto con sensores
+      \item Toma decisiones automáticas
+      \item Se comunica con otros sistemas
+    \end{itemize}
+  \end{exampleblock}
+  
+  \presenternote{Ejemplo práctico: "En invernaderos, fábricas o incluso hogares donde necesitas mantener condiciones específicas"}
+\end{frame}
+
+% 3. Estado del Arte
+\section{Tecnologías clave}
+\begin{frame}{Tecnologías clave explicadas}
+  \begin{columns}
+    \column{0.6\textwidth}
+    \begin{itemize}
+      \item \textbf{ESP32}: El "cerebro" del sistema (como un mini-computador)
+      \item \textbf{MicroPython}: Lenguaje para programar el dispositivo
+      \item \textbf{FreeRTOS}: Sistema que gestiona tareas simultáneas
+      \item \textbf{MQTT}: Protocolo de comunicación (como WhatsApp para dispositivos)
+    \end{itemize}
+    \column{0.4\textwidth}
+    \includegraphics[width=\textwidth]{f01_ESP32.jpg}
+  \end{columns}
+  
+  \vspace{5mm}
+  \begin{tikzpicture}
+    \draw[blue, fill=blue!10] (0,0) rectangle (0.98\textwidth,0.5);
+    \node at (0.49\textwidth,0.25) {\footnotesize\textbf{FreeRTOS} = Jefe que coordina múltiples trabajadores};
+  \end{tikzpicture}
+  
+  \presenternote{"FreeRTOS es como el director de orquesta que coordina todos los instrumentos"}
+\end{frame}
+
+% 4. Arquitectura y Desarrollo
+\section{Cómo funciona el sistema}
+\begin{frame}{Componentes principales}
+  \begin{columns}
+    \column{0.5\textwidth}
+      \begin{itemize}
+        \item \textcolor{green}{Sensores}: Ojos que miden temperatura/humedad
+        \item \textcolor{red}{Actuadores}: Manos que controlan luces/ventiladores
+        \item \textcolor{blue}{Cerebro}: Procesa información y toma decisiones
+        \item \textcolor{purple}{Comunicación}: Envía reportes a otros sistemas
+      \end{itemize}
+    \column{0.5\textwidth}
+      \includegraphics[width=0.9\textwidth]{7.VisualizaciondeDatos.png}
+      \captionof{figure}{Visualización de datos en tiempo real}
+  \end{columns}
+  
+  \presenternote{"Pueden ver en la imagen cómo se muestran los datos que recoge el sistema"}
+\end{frame}
+
+\begin{frame}{Gestión inteligente de tareas}
+  \begin{columns}
+    \column{0.6\textwidth}
+    \textbf{Cómo maneja múltiples tareas:}
+    \begin{itemize}
+      \item Monitoreo constante de sensores
+      \item Control de actuadores según necesidades
+      \item Comunicación con otros sistemas
+      \item Todo simultáneamente sin colapsar
+    \end{itemize}
+    \column{0.4\textwidth}
+    \includegraphics[width=\textwidth]{7.VisualizaciondeDatos.png}
+  \end{columns}
+  
+  \vspace{3mm}
+  \begin{alertblock}{Clave del sistema}
+    FreeRTOS permite hacer múltiples tareas a la vez como un malabarista experto
+  \end{alertblock}
+  
+  \presenternote{"Imaginen un chef que cocina, vigila el horno y atiende pedidos al mismo tiempo - así funciona nuestro sistema"}
+\end{frame}
+
+% 5. Código Clave
+\section{El lenguaje del sistema}
+\begin{frame}[fragile]{Cómo "piensa" el dispositivo}
+\begin{lstlisting}[language=Python]
+# Configuración de un LED inteligente
+class LED:
+    def __init__(self, pin_num, freq=1500):
+        self.pwm = PWM(Pin(pin_num), freq=freq)
+    
+    def on(self, percentage=0):
+        duty = int(percentage / 100 * 1023)
+        self.pwm.duty(duty)  # Ajusta brillo
+\end{lstlisting}
+
+\vspace{3mm}
+\begin{tikzpicture}
+  \draw[green, fill=green!10] (0,0) rectangle (0.98\textwidth,0.4);
+  \node at (0.49\textwidth,0.2) {\footnotesize\textbf{Explicación}: El sistema ajusta luces automáticamente según necesidades};
+\end{tikzpicture}
+
+\presenternote{"Este código es como las instrucciones que le damos al sistema para controlar las luces eficientemente"}
+\end{frame}
+
+\begin{frame}[fragile]{Toma de decisiones automática}
+\begin{lstlisting}[language=Python]
+def push_data():
+    # Envia datos de sensores cada 10 segundos
+    ...
+    
+while True:
+    push_data()  # Reporta datos
+    check_messages()  # Recibe instrucciones
+    adjust_environment()  # Ajusta condiciones
+    time.sleep(0.1)  # Espera breve
+\end{lstlisting}
+
+\vspace{3mm}
+\begin{tikzpicture}
+  \draw[orange, fill=orange!10] (0,0) rectangle (0.98\textwidth,0.4);
+  \node at (0.49\textwidth,0.2) {\footnotesize\textbf{Ciclo básico}: Medir → Decidir → Actuar → Reportar};
+\end{tikzpicture}
+
+\presenternote{"Como nuestro ciclo diario: despertar, trabajar, comer, dormir... pero para dispositivos"}
+\end{frame}
+
+% 6. Comparativa de Rendimiento
+\section{Rendimiento del sistema}
+\begin{frame}{Eficiencia comparada}
+  \begin{table}[]
+    \centering
+    \begin{tabular}{@{}lcc@{}}
+      \toprule
+      \textbf{Característica} & \textbf{Nuestro sistema} & \textbf{Sistemas tradicionales} \\
+      \midrule
+      Tiempo respuesta & 15 ms & 50-100 ms \\
+      Mensajes por segundo & 40 & 10-20 \\
+      Consumo energía & Bajo & Moderado \\
+      \bottomrule
+    \end{tabular}
+    \caption{Comparativa de rendimiento}
+  \end{table}
+  
+  \vspace{3mm}
+  \begin{tikzpicture}
+    \draw[blue, fill=blue!10] (0,0) rectangle (0.98\textwidth,0.4);
+    \node at (0.49\textwidth,0.2) {\footnotesize\textbf{Interpretación}: Responde más rápido y maneja más información};
+  \end{tikzpicture}
+  
+  \presenternote{"15ms es más rápido que un parpadeo humano (100-300ms)"}
+\end{frame}
+
+% 7. Resultados Experimentales
+\section{Resultados prácticos}
+\begin{frame}{Demostración visual}
+  \begin{columns}
+    \column{0.5\textwidth}
+      \begin{figure}
+        \includegraphics[width=0.75\textwidth]{11.ConexionWifi.png}
+        \caption{Conexión estable a red}
+      \end{figure}
+      \vspace{0.2cm}
+      \begin{figure}
+        \includegraphics[width=0.75\textwidth]{12.PruebasDiversas.png}
+        \caption{Pruebas de funcionamiento}
+      \end{figure}
+    \column{0.5\textwidth}
+      \begin{figure}
+        \includegraphics[width=0.75\textwidth]{13.PruebasFinaales.png}
+        \caption{Operación continua 24/7}
+      \end{figure}
+      \vspace{0.2cm}
+      \begin{figure}
+        \includegraphics[width=0.55\textwidth]{7.VisualizaciondeDatos.png}
+        \caption{Interfaz de monitoreo}
+      \end{figure}
+  \end{columns}
+  
+  \presenternote{"En estas imágenes podemos ver el sistema en acción durante nuestras pruebas"}
+\end{frame}
+
+% 8. Conclusiones y Futuro
+\section{Conclusiones}
+\begin{frame}{Lo que logramos}
+  \begin{itemize}
+    \item Sistema autónomo que mantiene condiciones ideales
+    \item Respuesta rápida a cambios ambientales
+    \item Comunicación efectiva con otros dispositivos
+    \item Uso eficiente de energía
+  \end{itemize}
+  
+  \pause
+  \vspace{5mm}
+  \begin{exampleblock}{Beneficios prácticos}
+    \begin{itemize}
+      \item Ahorro energético hasta 30%
+      \item Reducción de supervisión humana
+      \item Prevención de daños por condiciones adversas
+    \end{itemize}
+  \end{exampleblock}
+  
+  \presenternote{"En un invernadero, esto podría prevenir pérdidas por heladas o calor excesivo automáticamente"}
+\end{frame}
+
+\begin{frame}{Futuras mejoras}
+  \begin{columns}
+    \column{0.6\textwidth}
+    \begin{itemize}
+      \item \textcolor{green}{Integración con apps móviles}
+      \item \textcolor{blue}{Reconocimiento de patrones}
+      \item \textcolor{red}{Control por voz}
+      \item \textcolor{purple}{Mayor eficiencia energética}
+    \end{itemize}
+    \column{0.4\textwidth}
+    \includegraphics[width=\textwidth]{11.ConexionWifi.png}
+  \end{columns}
+  
+  \vspace{5mm}
+  \presenternote{"Imaginen controlar todo con un 'Hola dispositivo, ajusta la temperatura a 22°C'"}
+\end{frame}
+
+\begin{frame}{Gracias}
+  \centering
+  \Huge{¿Preguntas?}
+  
+  \vspace{5mm}
+  \large{Contacto:}
+  
+  \vspace{5mm}
+  \includegraphics[width=0.3\textwidth]{uni.png}
+  
+  \presenternote{Preparar respuestas para preguntas comunes sobre costos, aplicaciones prácticas y escalabilidad}
+\end{frame}
+
+\end{document}

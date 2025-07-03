@@ -1,0 +1,1806 @@
+\documentclass[twoside,12pt]{article}
+\usepackage[a4paper,
+left=2.54cm, right=2.54cm,top=2.54cm,bottom=2.54cm,
+head=1cm,foot=1cm]{geometry}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}% http://ctan.org/pkg/amsmath
+\usepackage{float}
+\usepackage{multicol}  
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amssymb} 
+\usepackage{ragged2e}
+\usepackage{array}
+\usepackage{tabularx}
+%\usepackage[style=apa,autocite=footnote]{biblatex}
+\usepackage[style=numeric,backend=biber]{biblatex}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{pgfplots,pgfplotstable}
+\usepackage{siunitx}
+\usepackage{verbatim}
+\usepackage{microtype}  % Añadido para mejorar el ajuste de texto
+\usepackage{needspace}  % Añadido para evitar Underfull \vbox en listings
+\pgfplotsset{compat=1.8}
+\usepgfplotslibrary{statistics}
+\usepackage{pdflscape}
+\DeclareFieldFormat{labelnumber}{\RN{#1}}
+\usepackage{csvsimple}%leer CSV
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=black,
+    citecolor=black,
+    urlcolor=blue,
+    pdftitle={Final ADC 24-2},
+    pdfpagemode=FullScreen,
+    }
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    aboveskip=3mm,   % Espacio antes del listing
+    belowskip=3mm    % Espacio después del listing
+}
+
+\lstset{style=mystyle}
+\lstset{columns=fixed}
+
+% Configuración para código MicroPython
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    frame=single,
+    captionpos=b
+}
+%\lstset{nowarnings=true} % Ignorar warnings de Underfull \vbox en listings
+
+\addbibresource{Referencias.bib}
+
+
+\newcommand\NomFacu{FACULTAD DE CIENCIAS}
+\graphicspath{ {imagenes/} }
+\newcommand\CodCurso{CC222}
+\newcommand\NomCurso{Sistemas Operativos}
+\newcommand\NomEscuela{ESCUELA DE CIENCIAS DE LA COMPUTACIÓN}
+\newcommand\NumPractica{3}
+\newcommand\NomTrabajo{INFORME DE PROYECTO}
+\newcommand\NomCompTrabajo{Aplicación de IoT para el desarrollo de un sistema de control de un ventilador casero usando el microcontrolador ESP32}
+\newcommand\NomSeccion{A}
+\newcommand\DiayHora{Jueves 2 de Julio del 2025, 11:00am}
+\newcommand\ProfesorUno{- BAZÁN CABANILLAS, Carlos Alberto}
+\newcommand\ProfesorDos{}
+\newcommand\FechaEntrega{ 2 de Julio del 2025}
+\newcommand\NomAlUno{VEGA BENDEZU, Alex}
+\newcommand\CodAlUno{20235519K}
+\newcommand\NomAlDos{MORI MALCA, Jean Paul}
+\newcommand\CodAlDos{20245016A}
+\newcommand\NomAlTres{DELGADO ROMERO, Gustavo Iván}
+\newcommand\CodAlTres{20235009B}
+\newcommand\CicloActual{2025-I}
+\newcommand\AnchoX{6}
+\newcommand\AltoY{6}
+\newcommand\Escala{0.8}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[R]{\CicloActual}
+\fancyhead[L]{\CodCurso - \NomCurso}
+\fancyfoot[R]{\thepage}
+\fancyfoot[L]{\NomFacu}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+\begin{titlepage}
+    \centering
+        {\bfseries\LARGE \textbf{UNIVERSIDAD NACIONAL DE INGENIERÍA} \par}
+        \vspace{0.5cm}
+        {\scshape\Large \NomFacu \par}
+        \vspace{0.5cm}
+        {\scshape\Large \NomEscuela \par}
+        
+        \vspace{0.5cm}
+            \begin{figure}[h]
+                \includegraphics[width=5cm]{UNI.png}
+                \centering
+            \end{figure}
+        {\scshape\Large \NomCurso \hspace{2cm} \CodCurso \par}
+        \vspace{0.5cm}
+        {\scshape\Large \NomTrabajo \par}
+        {\Large 
+            \textbf{\NomCompTrabajo} \par}
+        \vspace{0.5cm}
+            \begin{center}
+                \begin{tabularx}{\textwidth} { 
+                >{\raggedright\arraybackslash}m{3cm} 
+                >{\raggedleft\arraybackslash}X  }
+                {\Large  \textbf{Sección:} \normalsize \NomSeccion } %&  {\Large  %\textbf{Día y Hora:} \normalsize \DiayHora }  \\
+            \end{tabularx}
+        \end{center}
+    
+        %{\Large \RaggedRight \hspace{0.05cm}  
+            %\textbf{Número de práctica:} \NumPractica \par}
+    \vfill
+        \begin{center}
+            \begin{tabularx}{1.01\textwidth} { 
+                 >{\raggedright\arraybackslash}X 
+                 >{\raggedleft\arraybackslash}X  }
+                \textbf{Apellidos y Nombres} & \textbf{Código de alumno} \\ [0.2ex] 
+                \hline\hline
+                \NomAlUno & \CodAlUno\\ 
+                \NomAlDos & \CodAlDos\\ 
+                \NomAlTres & \CodAlTres\\ 
+                [0.2ex] 
+                \hline
+            \end{tabularx}
+        \end{center}
+    \vfill
+    {\normalsize \RaggedRight \hspace{0.05cm}  
+        \textbf{Nombre de los Docentes:} \\
+        \hspace{0.05cm} -\ProfesorUno \\
+       % \hspace{0.05cm} -\ProfesorDos
+        \par}
+    \vfill
+    {\normalsize \RaggedRight \hspace{0.05cm}  
+        \textbf{Fecha de entrega del informe:} \FechaEntrega \par}
+    \vfill
+    {\Large \CicloActual \par}
+\end{titlepage}
+\pagestyle{fancy}
+\section*{Resumen}
+Este proyecto presenta la implementación de un sistema IoT basado en el microcontrolador ESP32 utilizando MicroPython sobre FreeRTOS, demostrando la viabilidad de integrar lenguajes de alto nivel con sistemas operativos de tiempo real en plataformas con recursos limitados. El sistema desarrollado integra sensores de temperatura y humedad, actuadores (LEDs y ventiladores) y comunicación inalámbrica mediante WiFi y MQTT para la interacción con servicios en la nube.
+
+La arquitectura del proyecto se fundamenta en la gestión eficiente de múltiples tareas concurrentes, incluyendo la lectura continua de sensores, el control de actuadores y la comunicación bidireccional con un servidor remoto. El uso de FreeRTOS como sistema operativo subyacente permite la programación de tareas en tiempo real, garantizando la respuesta oportuna a eventos críticos mientras se mantiene la eficiencia energética del sistema.
+
+El sistema implementado incluye un servidor Docker desplegado en DigitalOcean que aloja tres servicios principales: una API Gateway para gestionar solicitudes HTTP y registros de dispositivos, un Event Hub para coordinar eventos y mensajes entre dispositivos, y un Dashboard para visualizar y controlar dispositivos a través de una interfaz gráfica. Esta arquitectura distribuida demuestra la escalabilidad y modularidad inherentes a los sistemas IoT modernos.
+
+Los resultados obtenidos validan la efectividad de la integración MicroPython-FreeRTOS, mostrando un sistema capaz de procesar datos de sensores en tiempo real, transmitir información a la nube y responder a comandos remotos de control. El proyecto contribuye al estado del arte en sistemas embebidos al demostrar que es posible desarrollar aplicaciones IoT complejas utilizando herramientas de alto nivel sin comprometer el rendimiento en tiempo real, abriendo nuevas posibilidades para el desarrollo rápido de sistemas IoT robustos y escalables.
+\newpage
+\section*{Introducción} % esta gozu
+    \subsection*{Motivación}
+    La creciente demanda de dispositivos IoT con capacidades de procesamiento en tiempo real ha impulsado la necesidad de comprender cómo los lenguajes de alto nivel como MicroPython pueden aprovechar las capacidades de sistemas operativos de tiempo real como FreeRTOS, especialmente en plataformas con recursos limitados como el ESP32.
+    
+    \subsection*{Objetivos}
+    El objetivo principal de este proyecto es analizar y documentar la implementación de un sistema IoT basado en ESP32 utilizando MicroPython sobre FreeRTOS, con énfasis en los mecanismos de concurrencia y gestión de recursos.
+    
+    \subsubsection*{Descripción del Problema}
+    Los sistemas IoT modernos requieren gestionar múltiples tareas simultáneas (lectura de sensores, control de actuadores, comunicación en red) con recursos limitados. El desafío consiste en implementar estas funcionalidades manteniendo la fiabilidad, eficiencia y capacidad de respuesta en tiempo real, utilizando herramientas que faciliten el desarrollo rápido como MicroPython.
+    
+    \subsection*{Estructura del proyecto}
+    El proyecto se estructura en torno a un sistema de monitoreo y control ambiental que integra sensores de temperatura y humedad, actuadores (LEDs y ventiladores) y comunicación mediante WiFi y MQTT para la interacción con servicios en la nube.
+    
+    
+    \addcontentsline{toc}{section}{\protect\numberline{}Introducción}
+    \clearpage
+    \tableofcontents
+    \clearpage
+    
+\section{Estado del arte}
+    \subsection{Trabajos Relacionados}
+    La integración de lenguajes interpretados de alto nivel con sistemas operativos de 
+    tiempo real ha sido objeto de diversos estudios. Proyectos como CircuitPython y MicroPython 
+    han demostrado la viabilidad de ejecutar código Python en microcontroladores, 
+    mientras que implementaciones como Zerynth han explorado específicamente la integración con RTOS.
+
+    El hardware utilizado en este proyecto se el microcontrolador ESP32, el cual es un componente 
+    clave en muchos proyectos de Internet de las cosas (IoT), principalmente debido a 
+    su versatilidad y capacidades inalámbricas integradas. El ESP32 ofrece procesamiento 
+    de doble núcleo, Wi-Fi integrado, Bluetooth y Bluetooth Low Energy (BLE), 
+    lo que lo convierte en un candidato ideal para diversas aplicaciones de IoT, 
+    incluido el monitoreo ambiental, la automatización del hogar inteligente, 
+    el control industrial y los sistemas de IoT descentralizados.
+    %The ESP32 microcontroller is a key component in many Internet of Things (IoT) projects, primarily because of its versatility and built-in wireless capabilities. The ESP32 offers dual-core processing, integrated Wi-Fi, Bluetooth, and Bluetooth Low Energy (BLE), making it an ideal candidate for various IoT applications, including environmental monitoring, smart home automation, industrial control, and decentralized IoT systems.
+    \begin{figure}[h]
+                    \includegraphics[width=7.5cm]{f01_ESP32.JPG}            
+                    \centering
+                    \caption{Placa Esp32 (WROOM)}
+    \end{figure}
+    \subsubsection{ESP32 en aplicaciones de IoT}
+    El ESP32 es particularmente adecuado para la transmisión y monitoreo de datos en tiempo real en proyectos de IoT. Se ha convertido en el microcontrolador preferido para los sistemas de IoT debido a su bajo consumo de energía y su capacidad para manejar la comunicación inalámbrica de manera eficiente, especialmente cuando es necesario transmitir datos a la nube para su posterior procesamiento. En el monitoreo de la calidad del aire, por ejemplo, el ESP32 ha sido fundamental para recopilar datos en tiempo real de los sensores y transmitirlos a la nube para su análisis.\footcite{IoT_AirQuality}.
+    %The ESP32 is particularly well-suited for real-time data transmission and monitoring in IoT projects. It has become a preferred microcontroller for IoT systems due to its low power consumption and ability to handle wireless communication efficiently, especially when data needs to be transmitted to the cloud for further processing. In air quality monitoring, for example, the ESP32 has been instrumental in collecting real-time data from sensors and transmitting it to the cloud for analysis \footcite{IoT_AirQuality}.
+    \begin{figure}[h]
+                    \includegraphics[width=7.5cm]{f02_Iot_smartHome.JPG}            
+                    \centering
+                    \caption{Aplicacion de IoT en casas inteligentes}
+    \end{figure}
+    
+    En el contexto de la seguridad ambiental, ESP32 desempeña un papel fundamental en el seguimiento de los niveles de temperatura y humedad en las zonas forestales, transmitiendo estos datos a un sistema central de detección de incendios, garantizando intervenciones oportunas.\footcite{IoT_FireDetection}. La capacidad de procesar datos de sensores en tiempo real y transmitirlos para monitoreo remoto hace que ESP32 sea ideal para aplicaciones de IoT críticas para la seguridad.
+    
+    
+    %In the context of environmental safety, ESP32 plays a critical role in monitoring temperature and humidity levels in forest areas, transmitting this data to a central system for fire detection, ensuring timely interventions \footcite{IoT_FireDetection}. The ability to process sensor data in real-time and relay it for remote monitoring makes ESP32 ideal for safety-critical IoT applications.
+    
+    \subsubsection{Variantes y componentes clave del ESP32}
+    
+    Han surgido varias variantes del microcontrolador ESP32, como el ESP32-C3, para satisfacer necesidades específicas en aplicaciones de IoT. Por ejemplo, ESP32-C3 ofrece un excelente rendimiento inalámbrico manteniendo un bajo consumo de energía, lo que lo hace adecuado para proyectos que exigen una batería de larga duración y una conectividad confiable. \footcite{WirelessAdventureESP32}. Estas características son esenciales en muchos casos de uso de IoT, donde el bajo consumo de energía es una prioridad.
+    %Several variants of the ESP32 microcontroller, such as the ESP32-C3, have emerged to cater to specific needs in IoT applications. For instance, ESP32-C3 offers excellent wireless performance while maintaining low power consumption, making it suitable for projects that demand long battery life and reliable connectivity \footcite{WirelessAdventureESP32}. These features are essential in many IoT use cases, where low power consumption is a priority.
+    \begin{figure}[h]
+                    \includegraphics[width=7.5cm]{f03_componentes.JPG}            
+                    \centering
+                    \caption{Componentes del ESP32}
+    \end{figure}
+    
+    Además, el ESP32 es capaz de actuar como un punto de acceso Wi-Fi, permitiendo que los dispositivos se conecten directamente a él para comunicarse e intercambiar datos. Esta capacidad permite que el ESP32 funcione como un centro central en redes de IoT, admitiendo varios protocolos inalámbricos como Wi-Fi y Bluetooth, que son fundamentales en los sistemas de automatización industrial y de hogares inteligentes. \footcite{HandsOnESP32}.
+    
+    %Additionally, the ESP32 is capable of acting as a Wi-Fi access point, allowing devices to connect directly to it for communication and data exchange. This capability enables the ESP32 to function as a central hub in IoT networks, supporting various wireless protocols like Wi-Fi and Bluetooth, which are critical in smart home and industrial automation systems \footcite{HandsOnESP32}.
+    
+    La arquitectura de doble núcleo del ESP32 mejora aún más sus capacidades de procesamiento, permitiéndole manejar tareas complejas como la recopilación, el procesamiento y la transmisión de datos de sensores en tiempo real. Estas características hacen del ESP32 una poderosa plataforma para aplicaciones de IoT, particularmente en sistemas industriales y domésticos inteligentes.\footcite{ESP32Characterization}.
+    %The ESP32's dual-core architecture further enhances its processing capabilities, enabling it to handle complex tasks such as real-time sensor data collection, processing, and transmission. These features make the ESP32 a powerful platform for IoT applications, particularly in smart home and industrial systems \footcite{ESP32Characterization}.
+    
+    \subsubsection{ESP32 en Casas Inteligentes y aplicaciones industriales}
+    
+    El ESP32 se ha utilizado ampliamente en sistemas domésticos inteligentes, donde su bajo costo y diseño energéticamente eficiente lo han convertido en un componente esencial en el monitoreo y control de dispositivos como luces, calefacción y ventilación. Permite a los propietarios realizar un seguimiento del consumo de energía y ajustar la configuración ambiental de forma remota, lo que contribuye a la automatización del hogar con eficiencia energética.
+     \footcite{SmartHomeESP32}.
+    %The ESP32 has been widely used in smart home systems, where its low cost and energy-efficient design have made it an essential component in monitoring and controlling devices like lights, heating, and ventilation. It allows homeowners to track energy consumption and adjust environmental settings remotely, contributing to energy-efficient home automation \footcite{SmartHomeESP32}.
+    
+    El ESP32 también está integrado en aplicaciones industriales de IoT, como el control de brazos robóticos en fábricas. Su capacidad para transmitir datos en tiempo real le permite gestionar los movimientos precisos de los dispositivos robóticos, lo que permite una operación remota eficiente. \footcite{IoT_RoboticArm}.Además, en sistemas SCADA de bajo costo, el ESP32 se ha aprovechado para monitorear y controlar procesos industriales a través de plataformas como ThingsBoard y MQTT. \footcite{LowCostSCADA}. Estos casos de uso resaltan la flexibilidad del ESP32 en entornos de IoT tanto domésticos como industriales.
+    \begin{figure}[h]
+                    \includegraphics[width=7.5cm]{f05_Efergy Solar Kit.JPG}            
+                    \centering
+                    \caption{Efergy Solar Kit}
+    \end{figure}
+    
+    %The ESP32 is also integrated into industrial IoT applications, such as robotic arm control in factories. Its ability to transmit data in real time allows it to manage the precise movements of robotic devices, enabling efficient remote operation \footcite{IoT_RoboticArm}. Moreover, in low-cost SCADA systems, the ESP32 has been leveraged to monitor and control industrial processes through platforms like ThingsBoard and MQTT \footcite{LowCostSCADA}. These use cases highlight the ESP32's flexibility in both domestic and industrial IoT environments.
+    
+    \subsubsection{Pros y contras de ESP32 en aplicaciones de IoT}
+    
+    El ESP32 ofrece numerosas ventajas en aplicaciones de IoT, que incluyen:
+    \begin{itemize}
+        \item Bajo consumo de energía, esencial para proyectos que funcionan con baterías y entornos con limitaciones energéticas. \footcite{WirelessAdventureESP32}.
+        \item Procesamiento de doble núcleo, lo que le permite manejar tareas complejas en tiempo real, como el procesamiento y la transmisión de datos de sensores.\footcite{ESP32Characterization}.
+        \item Wi-Fi y Bluetooth integrados, que facilitan la integración perfecta con otros dispositivos y redes \footcite{HandsOnESP32}.
+        \item Costo-Beneficio, lo que la convierte en una opción popular tanto para proyectos de pequeña escala como para grandes implementaciones industriales.\footcite{ESP32_Devices}.
+    \end{itemize}
+    
+    Sin embargo, algunos desafíos o limitaciones incluyen:
+    
+    \begin{itemize}
+        \item Limited processing power compared to more advanced microcontrollers, which Potencia de procesamiento limitada en comparación con microcontroladores más avanzados, lo que puede restringir su uso en tareas de cálculo extremadamente intenso.
+        \item Las limitaciones de memoria pueden ser un problema en aplicaciones que requieren grandes cantidades de procesamiento de datos, particularmente en escenarios que involucran múltiples tareas simultáneas.
+    
+    \end{itemize}
+    
+    
+    A pesar de estas limitaciones, el ESP32 sigue siendo una plataforma ampliamente adoptada debido a su equilibrio entre rendimiento, costo y versatilidad, lo que lo convierte en una piedra angular en el desarrollo de sistemas de IoT.
+    
+    
+    \begin{comment}
+    The ESP32 offers numerous advantages in IoT applications, including:
+    \begin{itemize}
+        \item Low power consumption, which is essential for battery-powered projects and energy-constrained environments \footcite{WirelessAdventureESP32}.
+        \item Dual-core processing, enabling it to handle complex real-time tasks such as sensor data processing and transmission \footcite{ESP32Characterization}.
+        \item Built-in Wi-Fi and Bluetooth, which facilitate seamless integration with other devices and networks \footcite{HandsOnESP32}.
+        \item Cost-effectiveness, making it a popular choice for both small-scale projects and large industrial deployments \footcite{ESP32_Devices}.
+    \end{itemize}
+    
+    However, some challenges or limitations include:
+    
+    \begin{itemize}
+        \item Limited processing power compared to more advanced microcontrollers, which may restrict its use in extremely computation-heavy tasks.
+        \item Memory constraints can be an issue in applications requiring large amounts of data processing, particularly in scenarios involving multiple concurrent tasks.
+    
+    \end{itemize}
+    
+    Despite these limitations, the ESP32 remains a widely adopted platform due to its balance of performance, cost, and versatility, making it a cornerstone in the development of IoT systems.
+    \end{comment}
+    
+    
+    
+        \newpage
+    \subsection{Conceptos teóricos}
+    Para garantizar que los lectores que no están familiarizados con la informática comprendan los elementos centrales de este proyecto, describiremos algunos de los conceptos clave relacionados con el microcontrolador ESP32 y su función en los sistemas de Internet de las cosas (IoT). Las siguientes definiciones aclararán términos y tecnologías esenciales para comprender cómo se puede utilizar ESP32 para controlar dispositivos, como un ventilador, en aplicaciones de IoT.
+
+    \subsubsection{Internet of Things (IoT)}
+    El Internet de las cosas (IoT) se refiere a una red de objetos físicos (o "cosas") equipados con sensores, software y otras tecnologías que les permiten conectarse e intercambiar datos a través de Internet. Esto permite monitorear y controlar los dispositivos de forma remota, brindando soluciones más eficientes, automatizadas e inteligentes. Ejemplos de aplicaciones de IoT incluyen hogares inteligentes, dispositivos de salud portátiles y sistemas de automatización industrial. \footcite{SmartHomeESP32}.
+    
+    \subsubsection{Microcontroladores y ESP32}
+    Un microcontrolador es un circuito integrado compacto diseñado para gobernar una operación específica en un sistema integrado, como controlar un dispositivo como un ventilador. Incluye procesador, memoria y periféricos de entrada/salida. El ESP32, desarrollado por Espressif Systems, es un microcontrolador potente y asequible que se utiliza en muchas aplicaciones de IoT. Cuenta con Wi-Fi y Bluetooth integrados, procesamiento de doble núcleo y soporte para varios periféricos, lo que lo hace muy adecuado para conectar dispositivos a Internet y controlarlos. \footcite{HandsOnESP32}.
+    
+    \subsubsection{Wi-Fi y Bluetooth en IoT}
+    Wi-Fi y Bluetooth son protocolos de comunicación inalámbrica que se utilizan para conectar dispositivos en un sistema IoT. El microcontrolador ESP32 tiene soporte integrado para ambos, lo que le permite conectarse a una red Wi-Fi para comunicarse por Internet o usar Bluetooth para la comunicación local de dispositivo a dispositivo. Esto es particularmente útil para aplicaciones como controlar un ventilador o recopilar datos de sensores y enviarlos a la nube.\footcite{IoT_AirQuality}.
+    
+    \subsubsection{Sensores y Actuadores}
+    En un sistema de IoT, los sensores recopilan datos del entorno, como la temperatura, la humedad o la calidad del aire, mientras que los actuadores realizan acciones físicas, como encender un ventilador o ajustar su velocidad. El ESP32 puede interactuar con una amplia variedad de sensores y actuadores, lo que le permite monitorear y controlar varios dispositivos de manera eficiente \footcite{IoT_FireDetection}.
+    
+    \subsubsection{Protocolo MQTT}
+    El protocolo Message Queuing Telemetry Transport (MQTT) es un protocolo de mensajería liviano diseñado para dispositivos con recursos limitados, como el ESP32, en redes IoT. Sigue un modelo de publicación/suscripción, donde los dispositivos (editores) envían mensajes a un servidor (broker) y otros dispositivos (suscriptores) los reciben. Este protocolo se utiliza ampliamente en IoT debido a su eficiencia en la gestión de dispositivos intermitentes de bajo consumo. Por ejemplo, se puede utilizar para enviar comandos a un ventilador para encender/apagar o ajustar la velocidad. \footcite{LowCostSCADA}.
+    
+    \subsubsection{Pines GPIO e interfaces periféricas}
+    Los pines de entrada/salida de uso general (GPIO) del ESP32 se utilizan para interactuar con componentes externos como sensores, LED o motores. Permiten que el microcontrolador lea entradas o controle actuadores. El ESP32 también admite interfaces como UART, I2C y SPI, que son esenciales para conectar periféricos adicionales en un sistema IoT.\footcite{ESP32_Devices}.
+    
+    \subsubsection{Consumo de energía y modos de suspensión}
+    Una de las ventajas importantes de ESP32 es su bajo consumo de energía, que es crucial para los dispositivos IoT que a menudo funcionan con baterías. El modo de suspensión profunda, que reduce drásticamente el consumo de energía cuando el dispositivo está inactivo, permite utilizar ESP32 en proyectos a largo plazo donde la eficiencia energética es fundamental. Esta característica es ideal para aplicaciones como monitorear un ventilador, donde el ESP32 puede "dormir" cuando el ventilador está apagado y reactivarse cuando el sistema necesita ajustar la configuración.
+     \footcite{WirelessAdventureESP32}.
+    
+    \subsubsection{Variantes de ESP32}
+    Existen varias versiones del microcontrolador ESP32, cada una con características específicas que pueden ser más adecuadas para diferentes aplicaciones de IoT. Por ejemplo, ESP32-WROOM y ESP32-WROVER ofrecen diferentes configuraciones de memoria, y el ESP32-C3 proporciona características adicionales de bajo consumo de energía y factores de forma más pequeños. La elección de la variante depende de la complejidad y los requisitos del proyecto. \footcite{CapacidadESP32}.
+    
+    \subsubsection{RTOS y ESP-IDF}
+    Los sistemas operativos en tiempo real (RTOS) están diseñados para aplicaciones que requieren procesamiento en tiempo real. El ESP32 puede ejecutar FreeRTOS, lo que permite una programación de tareas y una gestión de recursos más eficientes, lo que lo hace ideal para aplicaciones de IoT urgentes, como la automatización industrial. Además, ESP-IDF (Espressif IoT Development Framework) es un marco oficial para desarrollar software para ESP32, que ofrece acceso de bajo nivel a las capacidades del microcontrolador. %\footcite{EmulationESP32}.
+
+
+    \subsubsection{MicroPython}
+    El ESP32 fue programado utilizando MicroPython, un lenguaje de alto nivel que facilita el desarrollo en sistemas embebidos. MicroPython ofrece:
+    \begin{itemize}
+        \item Control directo de hardware mediante librerías específicas como machine y umqtt.simple.
+        \item Soporte para estructuras ligeras de datos y comunicación.
+    \end{itemize}
+    
+    
+    \subsubsection{MQTT y HTTP}
+    
+    Se utilizaron protocolos estándar para la comunicación:
+    \begin{itemize}
+        \item \textbf{MQTT}: Protocolo ligero de mensajería que garantiza la comunicación eficiente entre el ESP32 y el servidor.
+        \item \textbf{HTTP}: Utilizado para registrar dispositivos y enviar datos al servidor.
+    \end{itemize}
+    
+    
+    \subsubsection{Docker}
+    
+    El servidor fue configurado en contenedores Docker para garantizar modularidad y escalabilidad. Los servicios principales se dividieron en:
+    \begin{itemize}
+        \item \textbf{API Gateway}: Gestiona las solicitudes HTTP y los registros de dispositivos.
+        \item \textbf{Event Hub}: Coordina eventos y mensajes entre dispositivos.
+        \item \textbf{Dashboard}: Permite visualizar y controlar dispositivos a través de una interfaz gráfica.
+    \end{itemize}
+    
+    
+    \subsubsection{Librerías y Herramientas Complementarias}
+    
+    \begin{itemize}
+        \item \textbf{Librería dht}: Para medir temperatura y humedad.
+        \item \textbf{Librería urequests}: Para solicitudes HTTP.
+        \item \textbf{Wokwi}: Simulador utilizado para pruebas iniciales del código en un entorno seguro.
+    \end{itemize}
+       
+
+    \subsubsection{Microcontrolador ESP32}
+    \begin{itemize}
+        \item Características principales:
+            \begin{itemize}
+                \item Procesador dual-core con conectividad WiFi y Bluetooth integrada.
+                \item Soporte para protocolos IoT como MQTT y HTTP.
+            Pines GPIO configurables para conectar sensores y actuadores.
+            \end{itemize}
+        
+        \item Ventajas:
+        \begin{itemize}
+            \item Alta eficiencia energética.
+            \item Amplia comunidad de desarrolladores y documentación.
+        \end{itemize}
+    \end{itemize}
+    
+    
+    \subsubsection{Sensor DHT22}
+    
+    \begin{itemize}
+        \item Función: Medición de temperatura y humedad.
+        \item Especificaciones:
+        \item Rango de temperatura: -40 a 80 °C.
+        \item Rango de humedad: 0 a 100%.
+    
+    \end{itemize}
+    Uso en el proyecto:\\
+    Captura de datos ambientales para su visualización en el dashboard.
+    
+    
+    \subsubsection{Actuadores}
+    
+    \begin{itemize}
+        \item \textbf{Ventiladores}: Controlados mediante pines PWM para regular su velocidad.
+        \item \textbf{LEDs}: Utilizados para indicar estados operativos y responder a comandos del usuario.
+    \end{itemize}
+    
+    \subsubsection{Infraestructura del Servidor}
+    
+    
+    \textbf{DigitalOcean:}
+    
+    \begin{itemize}
+        \item Droplet configurado para alojar los contenedores Docker.
+        \item Capacidad suficiente para manejar las solicitudes de múltiples dispositivos.
+    \end{itemize}
+    
+    
+    \subsubsection{Otros Componentes}
+    
+        \begin{itemize}
+            \item \textbf{Resistencias}: Utilizadas para limitar la corriente en los LEDs.
+            \item \textbf{Botones Pulsadores}: Configurados para permitir control manual de los actuadores.
+        \end{itemize}
+
+    \subsection{Conclusiones del estado del arte}
+    El estado del arte muestra que el ESP32 es una plataforma versátil y eficiente para aplicaciones IoT,
+     con una comunidad activa y una amplia gama de recursos disponibles. 
+     Sin embargo, la integración de MicroPython sobre FreeRTOS presenta desafíos en términos de rendimiento 
+     y recursos, lo que sugiere la necesidad de optimizaciones adicionales para aplicaciones de tiempo real.
+    \newpage
+\section{Desarrollo}
+    \subsection{Descripción del caso de estudio}
+    \subsubsection{Problemática}
+    Los sistemas de monitoreo y control ambiental requieren respuesta en tiempo real a cambios en las condiciones ambientales, mientras mantienen comunicación constante con servicios en la nube. Esto plantea desafíos de concurrencia, gestión de recursos y sincronización.
+
+    \subsubsection{Objetivo del caso de estudio}
+    Implementar un sistema IoT que demuestre la integración efectiva entre MicroPython y FreeRTOS, permitiendo el control de actuadores, lectura de sensores y comunicación en red de manera concurrente y eficiente.
+
+    \subsubsection{Evaluación de solución del caso de estudio}
+    La solución se evalúa en términos de respuesta a eventos, eficiencia en el uso de recursos, robustez ante fallos y facilidad de mantenimiento y extensión.
+
+    \subsection{Metodología de desarrollo de la solución}
+    \subsubsection{Especificación de requerimientos}
+    \paragraph{Requerimientos Funcionales:}
+    \begin{itemize}
+    \item Lectura periódica de temperatura y humedad mediante sensor DHT22
+    \item Control de LEDs y ventiladores mediante PWM
+    \item Conexión a red WiFi y broker MQTT
+    \item Envío periódico de datos de telemetría a la nube
+    \item Recepción y procesamiento de comandos remotos
+    \item Control local mediante botones físicos
+    \end{itemize}
+
+    \paragraph{Requerimientos No Funcionales:}
+    \begin{itemize}
+    \item Respuesta en tiempo real a cambios en condiciones ambientales
+    \item Operación continua sin interrupciones
+    \item Bajo consumo de recursos (memoria, CPU)
+    \item Sincronización temporal precisa
+    \item Recuperación ante fallos de red
+    \end{itemize}
+
+    \subsubsection{Herramientas}
+    \paragraph{MicroPython}
+    Entorno de ejecución Python para ESP32, proporcionando acceso a hardware y abstracciones de alto nivel.
+
+    \paragraph{FreeRTOS}
+    Sistema operativo subyacente que gestiona la multitarea y recursos del sistema.
+
+    \paragraph{ESP32}
+    Plataforma hardware con capacidades WiFi y procesamiento dual-core.
+
+    \paragraph{MQTT}
+    Protocolo de comunicación para la interacción con servicios en la nube.
+
+    \subsection{Diseño de arquitectura de desarrollo}
+    El sistema implementa una arquitectura en capas:
+
+    \begin{center}
+    \begin{tikzpicture}
+    % Nodos principales
+    \node[draw, rectangle, fill=blue!10] (esp32) at (0,0) {ESP32 + FreeRTOS};
+    \node[draw, rectangle, fill=green!10] (sensor) at (-4,-2) {Sensor DHT22};
+    \node[draw, rectangle, fill=yellow!10] (leds) at (0,-2) {LEDs y Ventiladores};
+    \node[draw, rectangle, fill=red!10] (wifi) at (4,-2) {WiFi/MQTT};
+    \node[draw, rectangle, fill=gray!10] (cloud) at (2,-4) {Nube IoT};
+    % Conexiones
+    \draw[-to] (esp32) -- (sensor);
+    \draw[-to] (esp32) -- (leds);
+    \draw[-to] (esp32) -- (wifi);
+    \draw[-to] (wifi) -- (cloud);
+    \end{tikzpicture}
+    \end{center}
+
+    \subsubsection{Integración e interfaces}
+    La integración entre componentes se realiza mediante:
+    \begin{itemize}
+    \item APIs de MicroPython para acceso a hardware
+    \item Callbacks para manejo de eventos asíncronos
+    \item Clases de abstracción para dispositivos y comunicación
+    \item Temporizadores para tareas periódicas
+    \end{itemize}
+
+    \subsubsection{Análisis de datos}
+    Los datos de sensores se procesan localmente para control de actuadores y se envían a la nube para análisis histórico y visualización.
+
+    \subsection{Módulos}
+    \subsubsection{Diseño de módulos}
+    \paragraph{Módulo de Control de Dispositivos:}
+    Gestiona la interacción con LEDs, ventiladores y otros actuadores mediante PWM.
+
+    \begin{lstlisting}[caption=Clase LED para control PWM]
+    class LED:
+        def __init__(self, pin_num, freq=1500):
+            self.pin_num = pin_num
+            self.freq = freq
+            self.pwm = PWM(Pin(pin_num), freq=freq)
+            self.is_on = False
+            self.percent = 0
+            
+        def on(self, percentage = 0):
+            if percentage > 0:
+                self.percent = percentage
+                self.duty = int(percentage / 100 * 1023)
+            self.pwm.duty(self.duty)
+            self.is_on = True
+    \end{lstlisting}
+
+    \paragraph{Módulo de Comunicación:}
+    Gestiona la conexión WiFi y MQTT para interacción con servicios en la nube.
+
+    \begin{lstlisting}[caption=Conector MQTT]
+    class MqttConnector:
+        def __init__(self, client_id, broker, user, password):
+            self.client_id = client_id
+            self.broker = broker
+            self.user = user
+            self.password = password
+            
+        def connect(self, callback):
+            self.client = MQTTClient(self.client_id, self.broker)
+            self.client.set_callback(callback)
+            self.client.connect()
+            
+        def publish(self, topic, data):
+            self.client.publish(topic, data)
+    \end{lstlisting}
+
+    \paragraph{Módulo de Sensores:}
+    Gestiona la lectura de sensores de temperatura y humedad.
+
+    \paragraph{Módulo de Gestión de Tareas:}
+    Implementa temporizadores y callbacks para simular multitarea en MicroPython.
+
+    \begin{lstlisting}[caption=Ejemplo de tarea concurrente]
+    from helpers import DelayedMethod
+
+    def push_data():
+        # Envia datos de sensores por MQTT
+        ...
+
+    push_device_data_delay = DelayedMethod(push_data, 10)
+
+    while True:
+        push_device_data_delay.run()
+        mqtt_connector.check_incoming_msg()
+        time.sleep(0.1)
+    \end{lstlisting}
+
+    \subsection{Estructura General del Proyecto}
+    El sistema está compuesto por tres componentes principales:
+    \begin{enumerate}
+        \item \textbf{ESP32 (Microcontrolador)}:\\
+    Ejecuta el código principal para gestionar sensores y actuadores, conectarse a WiFi y comunicarse con el servidor Docker mediante MQTT y HTTP.
+        \item \textbf{Servidor Docker:}\\
+    Contiene tres repositorios:
+        \begin{itemize}
+            \item docker-iot-connector-api: Proporciona una API para procesar datos del ESP32.
+            \item docker-iot-connector-event-hub: Gestiona eventos y datos entre el ESP32 y las aplicaciones cliente.
+            \item docker-iot-connector-dashboard: Permite visualizar datos y controlar dispositivos a través de un dashboard.
+        \end{itemize}
+    
+        \item \textbf{Hardware adicional}:
+    Sensores DHT22, LEDs y un ventilador, todos controlados por el ESP32.
+    \end{enumerate}
+    \subsection{Código Principal del ESP32}
+    
+    El código se divide en varios bloques funcionales que interactúan con los periféricos y el servidor. A continuación, se detallan los más importantes:
+    
+    \subsubsection{Configuración inicial}
+    Define parámetros como el WiFi, el MQTT y los dispositivos conectados:
+    
+    \begin{lstlisting}[language=Python, caption=Implementación en Python]
+    # Configuracion de WiFi
+    WIFI_SSID = "Wokwi-GUEST"
+    WIFI_PASSWORD = ""
+    
+    # Configuracion de MQTT
+    MQTT_BROKER = "143.198.5.161"
+    MQTT_USER_NAME = ESP_32_GATEWAY_ID
+    MQTT_PASSWORD = DEVICE_SECRETE
+    
+    # Definicion de dispositivos
+    RED_LED_DEVICE = {"name": "RED_LED", "type": DeviceType.LED, "pin": 12, "id": RED_LED_DEVICE_ID}
+    BLUE_LED_DEVICE = {"name": "BLUE_LED", "type": DeviceType.LED, "pin": 13, "id": BLUE_LED_DEVICE_ID}
+    \end{lstlisting}
+    
+    
+    
+    \subsubsection{Gestión de dispositivos} 
+    Usa clases como DevicesManager para configurar y gestionar dispositivos conectados al ESP32:
+    
+    
+    \begin{lstlisting}[language=Python, caption=Implementación en Python]
+    # Creacion de dispositivos
+    devices_manager = DevicesManager(gateway_name=DEVICE_NAME, gateway_id=DEVICE_ID)
+    devices_manager.create_device(RED_LED_DEVICE)
+    devices_manager.create_device(BLUE_LED_DEVICE)
+    \end{lstlisting}
+    \subsubsection{Enlace con el servidor}
+    Se conecta a WiFi, registra dispositivos en el servidor y suscribe tópicos MQTT:
+    
+    
+    \begin{lstlisting}[language=Python, caption=Implementación en Python]
+    # Conexion a WiFi
+    wifi_connector = WiFiConnector(WIFI_SSID, WIFI_PASSWORD)
+    wifi_connector.connect()
+    
+    # Registro en el servidor
+    api_client = APIClient("http://{0}:{1}".format(URL_HOST, URL_PORT))
+    provisioning_response = api_client.post("/api/v1/devices/provision/group/{0}/{1}".format(GROUP_ID, API_KEY), data=devices_manager.get_provisioning_device_data(DEVICE_SECRETE))
+    
+    # Conexion a MQTT
+    mqtt_connector = MqttConnector(MQTT_CLIENT_ID, MQTT_BROKER, MQTT_USER_NAME, MQTT_PASSWORD)
+    mqtt_connector.connect(did_recieve_subscription_message)
+    mqtt_connector.subscribe(MQTT_CONTROL_TOPIC)
+    \end{lstlisting}
+    
+    \subsubsection{Lógica principal} 
+    Maneja el envío de datos a la nube y la respuesta a comandos MQTT:
+    
+    
+    \begin{lstlisting}[language=Python, caption=Implementación en Python]
+    # Enviar datos a la nube
+    def push_data():
+        telemetry_data = {
+            "type": ChannelTypes.TELEMETRY,
+            "data": devices_manager.get_data()
+        }
+        mqtt_connector.publish(MQTT_TELEMETRY_TOPIC, ujson.dumps(telemetry_data))
+    \end{lstlisting}
+    \subsubsection{Gestión de LEDs y ventiladores} 
+    Controla el encendido, apagado y ajuste de brillo o velocidad:
+    
+    \begin{lstlisting}[language=Python, caption=Implementación en Python]
+    RED_LED.on(100)  # Encender LED rojo al 100% de brillo
+    BLUE_FAN.set_brightness(50)  # Ajustar ventilador azul al 50% de velocidad
+    \end{lstlisting} 
+    \subsection{Instrucciones para Ejecutar el Código} 
+    
+    \begin{itemize}
+        \item Requisitos previos:
+    
+        \begin{itemize}
+            \item ESP32 DevKit v1 con MicroPython instalado.
+            \item Conexión WiFi con SSID "Wokwi-GUEST".
+            \item Un servidor Docker configurado con los tres repositorios mencionados.
+        \end{itemize}
+         
+        \item Pasos para cargar el código:
+        \begin{itemize}
+            \item Flashear el ESP32 con MicroPython usando herramientas como esptool.
+            \item Subir los archivos necesarios (\(main.py, helpers.py, led_pwm.py\)) al ESP32 usando Thonny o similares.
+            \item Configurar el servidor Docker usando las URLs de los repositorios.
+        \end{itemize}
+        
+        \item Librerías necesarias:
+        \begin{itemize}
+            \item umqtt.simple para comunicación MQTT.
+            \item urequests para solicitudes HTTP.
+            \item dht para el sensor de temperatura y humedad.
+        \end{itemize}
+    \end{itemize}
+        \newpage
+\section{Resultados}
+    En esta sección se presentan las evidencias que demuestran el correcto funcionamiento del sistema implementado. Se incluyen capturas de pantalla y descripciones detalladas de cada etapa del proceso, desde la creación del entorno Docker hasta la interacción entre el ESP32 y el dashboard.
+
+    \subsection{Creación y Configuración del Servidor Docker en DigitalOcean}
+    
+    Se desplegó un servidor en DigitalOcean para alojar los contenedores Docker necesarios para el funcionamiento del sistema. A continuación, se describen los pasos realizados:
+    \begin{itemize}
+        \item Creación del Droplet:
+    
+    Se seleccionó una imagen base de Ubuntu 20.04.
+    Se configuraron los recursos del servidor según las necesidades del proyecto.
+    
+        \begin{figure}[ht]
+            \includegraphics[width=14cm]{1.Droplet.png}
+            \centering
+            \caption{Creación del Droplet}
+        \end{figure}
+        
+        \item Instalación de Docker y Docker Compose:
+    
+        Se seleccionó la opción de instalación del Docker y Docker Compose en el servidor.
+    \newpage
+        \begin{figure}[ht]
+            \includegraphics[width=14cm]{2.Docker.png}
+            \centering
+            \caption{Utilización de Docker}
+        \end{figure}
+        
+        \item Clonación de Repositorios:
+    
+        Se clonaron los tres repositorios necesarios:
+        \begin{itemize}
+            \item docker-iot-connector-api
+            \item docker-iot-connector-event-hub
+            \item docker-iot-connector-dashboard
+        \end{itemize}
+        
+        \begin{figure}[ht]
+            \includegraphics[width=14cm]{3.Repositorios.png}
+            \centering
+            \caption{Clonación de repositorios}
+        \end{figure}
+        
+        \item Configuración de Contenedores:
+    
+    Se configuraron los archivos docker-compose.yml para cada repositorio.
+    Se establecieron las variables de entorno necesarias para la comunicación entre los servicios.
+    Despliegue de Contenedores:
+    
+    Se utilizaron los comandos docker-compose up -d para levantar los servicios en segundo plano.
+    Se verificó el estado de los contenedores con \textit{docker ps}.
+    
+        \begin{figure}[ht]
+                \includegraphics[width=14cm]{4.ConfiguracionContenedores.png}
+                \centering
+                \caption{Configuración de contenedores}
+        \end{figure}
+    \end{itemize}
+    
+    \subsection{Despliegue del Dashboard}
+    El dashboard es la interfaz gráfica que permite visualizar y controlar los dispositivos conectados al sistema.
+    
+    \begin{itemize}
+        \item Acceso al Dashboard:
+        \begin{itemize}
+            \item Se accedió al dashboard mediante la dirección IP del servidor y el puerto configurado.
+            \item Se mostró la pantalla de inicio de sesión, donde se ingresaron las credenciales establecidas.
+        \end{itemize}
+            \begin{figure}[ht]
+                \includegraphics[width=14cm]{5.Conexion.png}
+                \centering
+                \caption{Acceso al dashboard}
+            \end{figure}
+    
+        \item Configuración Inicial:
+        \begin{itemize}
+            \item Se agregaron los dispositivos al dashboard utilizando los identificadores únicos proporcionados.
+            \item Se establecieron las relaciones entre dispositivos y grupos.
+        \end{itemize}
+            \begin{figure}[ht]
+                \includegraphics[width=12cm]{6.ConfiguracionInicial.png}
+                \centering
+                \caption{Configuración Inicial}
+            \end{figure}
+    
+        \item Visualización de Datos:
+    
+        El dashboard mostró en tiempo real los datos enviados por el ESP32, como temperatura, humedad y estados de los LEDs y ventiladores.
+        
+        \begin{figure}[ht]
+            \includegraphics[width=12cm]{7.VisualizaciondeDatos.png}
+            \centering
+            \caption{Visualización de datos}
+        \end{figure}
+        
+    \end{itemize}
+    \newpage
+    
+    
+    \subsection{Configuración y Conexión con RabbitMQ}
+        RabbitMQ se utilizó como broker MQTT para gestionar la comunicación entre el ESP32 y el servidor.
+        \begin{itemize}
+            \item     Instalación de RabbitMQ:
+        
+        Se desplegó RabbitMQ en un contenedor Docker mediante el repositorio docker-iot-connector-event-hub.
+        Se configuraron los puertos y las credenciales de acceso.
+    
+        \begin{figure}[ht]
+            \includegraphics[width=10cm]{8.RabbitDocker.png}
+            \centering
+            \caption{Instalación de RabbitMQ en docker}
+        \end{figure}
+        
+            \item     Verificación de RabbitMQ:
+        
+        Se accedió a la interfaz de administración de RabbitMQ para verificar que el servicio estuviera operativo.
+        Se observaron las colas y los exchanges configurados para el sistema.
+    
+        \begin{figure}[ht]
+            \includegraphics[width=14cm]{10.RabbitMq.png}
+            \centering
+            \caption{Acceso a RabbitMQ}
+        \end{figure}
+        \end{itemize}
+    
+    \newpage
+    \subsection{Conexión del Microcontrolador ESP32 con el Dashboard}
+    El ESP32 fue programado para conectarse al servidor y enviar datos de los sensores, así como recibir comandos para controlar los actuadores.
+    
+    \begin{itemize}
+        \item Conexión a la Red WiFi:
+    
+    El ESP32 se conectó exitosamente a la red WiFi especificada.
+    Se verificó la dirección IP asignada al dispositivo.
+    
+    
+        \item Registro y Autenticación:
+    
+    El ESP32 se registró en el servidor utilizando el API Client incluido en el código.
+    Se autenticó correctamente con el broker MQTT utilizando las credenciales configuradas.
+        \item Intercambio de Mensajes MQTT:
+    
+    El ESP32 publicó datos de telemetría en el tópico correspondiente.
+    Se suscribió a los tópicos de control para recibir comandos desde el dashboard.
+        \item Control de Dispositivos:
+    
+    Desde el dashboard, se enviaron comandos para encender y apagar los LEDs y ajustar la velocidad de los ventiladores.
+    El ESP32 recibió estos comandos y actuó en consecuencia, lo cual se reflejó físicamente en los dispositivos conectados.
+    
+        \begin{figure}[ht]
+            \includegraphics[width=14cm]{11.ConexionWifi.png}
+            \centering
+            \caption{Conexión a red WiFi}
+        \end{figure}
+        
+    \end{itemize}
+    
+    \newpage
+    \subsection{Pruebas y Validación del Sistema}
+    Se realizaron diversas pruebas para asegurar el correcto funcionamiento y robustez del sistema.
+    
+    \begin{itemize}
+        \item Prueba de Sensores:
+    
+    Se verificó que el sensor DHT22 proporcionara lecturas precisas de temperatura y humedad.
+    Se simularon cambios en el ambiente para observar las actualizaciones en tiempo real en el dashboard.
+        \item Respuesta a Eventos:
+    
+    Se utilizaron los botones conectados al ESP32 para cambiar el estado de los dispositivos.
+    El sistema respondió adecuadamente, actualizando el estado en el dashboard y actuando sobre los actuadores.
+        \item Gestión de Errores y Reconexión:
+    
+    Se interrumpió la conexión WiFi para probar la capacidad del ESP32 de reconectarse automáticamente.
+    El dispositivo logró restablecer la conexión y continuar enviando datos sin pérdida significativa.
+        \begin{figure}[ht]
+            \includegraphics[width=14cm]{12.PruebasDiversas.png}
+            \centering
+            \caption{Pruebas diversas}
+        \end{figure}
+    
+    \end{itemize}
+    \newpage
+    \subsection{Integración Completa y Funcionamiento en Tiempo Real}
+    Finalmente, se comprobó el funcionamiento integrado del sistema en un entorno simulado.
+    
+    \begin{itemize}
+        \item Operación Continua:
+    
+    El sistema se mantuvo operando durante un período prolongado, demostrando estabilidad y confiabilidad.
+    Los datos históricos se almacenaron y visualizaron en el dashboard.
+        
+        \begin{figure}[ht]
+            \includegraphics[width=14cm]{13.PruebasFinaales.png}
+            \centering
+            \caption{Funcionamiento continuo}
+        \end{figure}
+    \end{itemize}
+    
+        \newpage
+\section{Conclusiones y Trabajos Futuros}
+    \subsection{Conclusiones}
+    \begin{itemize}
+        \item \textbf{Implementación Exitosa del Sistema IoT}\\
+    El proyecto demostró la viabilidad de utilizar el microcontrolador ESP32 como núcleo para implementar un sistema IoT escalable. La comunicación eficiente mediante MQTT y HTTP permitió integrar sensores y actuadores con un servidor Docker en DigitalOcean, logrando un control remoto confiable y en tiempo real.
+    
+        \item \textbf{Versatilidad del ESP32}\\
+    El ESP32 destacó por su capacidad de manejar múltiples dispositivos (sensores y actuadores) simultáneamente, su compatibilidad con diversas librerías y su facilidad de programación con MicroPython. Estas características lo posicionan como una solución robusta para proyectos similares.
+    
+        \item \textbf{Uso Eficiente de Contenedores Docker}\\
+    La separación de funcionalidades en contenedores Docker (API, event hub y dashboard) permitió una arquitectura modular y escalable. Esto simplificó la implementación, el mantenimiento y la posibilidad de extender el sistema en el futuro.
+    
+        \item \textbf{Lecciones Aprendidas}
+    Durante el desarrollo, se identificó la importancia de:
+    \begin{itemize}
+        \item Diseñar flujos de trabajo claros para la integración de hardware y software.
+        \item Implementar mecanismos de reconexión y manejo de errores para sistemas IoT.
+        \item Utilizar entornos de simulación, como Wokwi, para pruebas previas al despliegue físico.
+    \end{itemize}
+    
+    \end{itemize}
+    \subsection{Trabajos Futuros}
+    \begin{itemize}
+        \item \textbf{Expansión del Sistema}\\
+    Escalar el sistema para incluir múltiples dispositivos en diferentes ubicaciones, optimizando la asignación de recursos y mejorando la comunicación entre ellos.
+    
+        \item \textbf{Optimización del Control de Ventiladores}\\
+    Incorporar algoritmos de control más avanzados, como control PID, para ajustar la velocidad del ventilador de manera más precisa en función de las condiciones ambientales.
+    
+        \item \textbf{Análisis de Datos en Tiempo Real}\\
+    Desarrollar una capa de análisis en el dashboard para identificar patrones de uso y generar recomendaciones automáticas basadas en datos históricos.
+    
+        \item \textbf{Seguridad IoT}\\
+    Mejorar la seguridad del sistema implementando cifrado SSL/TLS para la comunicación MQTT y métodos de autenticación más robustos.
+    
+        \item \textbf{Automatización de Reglas}\\
+    Configurar un sistema de automatización más avanzado para permitir que el sistema tome decisiones de manera autónoma. Por ejemplo, encender el ventilador automáticamente cuando la temperatura supere un umbral específico o cuando se detecte alta humedad.
+    
+        \item \textbf{Compatibilidad con Otras Plataformas}\\
+    Extender la compatibilidad del sistema para trabajar con otras plataformas IoT, como AWS IoT Core o Google IoT Cloud, para ampliar las opciones de integración.
+    \end{itemize}
+    
+        \newpage
+\section*{Referencias Bibliográficas}
+    
+    \printbibliography[heading=none]{\enumerate[label={[\arabic*]}]}
+    \addcontentsline{toc}{section}{\protect\numberline{}Bibliografía}
+    \newpage
+\section*{Anexos}
+    \subsection*{Anexo 1:Repositorios utilizados para el docker}
+
+    Los repositorios utilizados fueron:\\
+   
+    Para el API:\\ \url{https://bitbucket.org/letscodewithfrancis/docker-iot-connector-api}
+        
+    Para el event-hub:\\ \url{https://bitbucket.org/letscodewithfrancis/docker-iot-connector-event-hub}
+        
+    Para el dashboard:\\ \url{https://bitbucket.org/letscodewithfrancis/docker-iot-connector-dashboard}
+
+    
+    \newpage
+    
+    \subsection*{Anexo 2:Configuraciones en el Esp32}
+    \subsubsection*{Diagrama en formato json}
+    \needspace{15\baselineskip}
+    \begin{lstlisting}[language=C++, caption=Conexiones del esp32]
+{
+  "version": 1,
+  "author": "Gustavo Delgado",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-esp32-devkit-v1",
+      "id": "esp",
+      "top": 30.01,
+      "left": 55.4,
+      "attrs": { "env": "micropython-20220618-v1.19.1" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 188.4,
+      "left": -159.4,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 157.55,
+      "left": -48,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": 188.4,
+      "left": -101.8,
+      "attrs": { "color": "blue" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 224.75,
+      "left": -48,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": 249.9,
+      "left": 71.4,
+      "attrs": { "humidity": "71.5", "temperature": "21.1" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 35,
+      "left": -182.4,
+      "attrs": { "color": "red" }
+    },
+    { "type": "wokwi-gnd", "id": "gnd1", "top": 268.8, "left": -211.8, "attrs": {} },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn2",
+      "top": 35,
+      "left": -86.4,
+      "attrs": { "color": "blue" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn3",
+      "top": 35,
+      "left": 211.2,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn4",
+      "top": 35,
+      "left": 307.2,
+      "attrs": { "color": "blue" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led3",
+      "top": 159.6,
+      "left": 253.4,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led4",
+      "top": 159.6,
+      "left": 320.6,
+      "attrs": { "color": "blue" }
+    },
+    { "type": "wokwi-gnd", "id": "gnd2", "top": 249.6, "left": 393, "attrs": {} },
+    {
+      "type": "wokwi-text",
+      "id": "led-text",
+      "top": 297.6,
+      "left": 259.2,
+      "attrs": { "text": "RED & BLUE FAN" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "fan-text",
+      "top": 297.6,
+      "left": -163.2,
+      "attrs": { "text": "RED & BLUE LED" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "temp-humidity-text",
+      "top": 412.8,
+      "left": 19.2,
+      "attrs": { "text": "TEMPERATURE & HUMIDITY" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "esp:D12", "r1:2", "red", [ "h-31.6", "v-0.1", "h-3.59" ] ],
+    [ "esp:D13", "r2:2", "blue", [ "h0" ] ],
+    [ "r1:1", "led1:A", "red", [ "h-67.2", "v67.2" ] ],
+    [ "led2:A", "r2:1", "blue", [ "h4.16", "v-117.2" ] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "v17.86", "h105.49", "v-192.13" ] ],
+    [ "dht1:SDA", "esp:D15", "green", [ "v27.33", "h112.09", "v-220.6" ] ],
+    [ "dht1:GND", "esp:GND.1", "black", [ "v33.96", "h110.78", "v-217.73" ] ],
+    [ "esp:D33", "btn1:1.r", "red", [ "h-98.8", "v-25.31", "h-67.2", "v115.2" ] ],
+    [ "btn1:2.l", "gnd1:GND", "black", [ "h-19.2", "v201.8" ] ],
+    [ "esp:D32", "btn2:1.r", "blue", [ "h-60.4", "v-54.21" ] ],
+    [ "led1:C", "gnd1:GND", "black", [ "v0" ] ],
+    [ "led2:C", "gnd1:GND", "black", [ "v0" ] ],
+    [ "esp:D21", "btn3:2.l", "red", [ "h0" ] ],
+    [ "esp:D19", "btn4:2.l", "blue", [ "h131.3", "v-35.01" ] ],
+    [ "esp:D18", "led4:A", "blue", [ "h217.7", "v3.49" ] ],
+    [ "led3:A", "esp:D5", "red", [ "v0", "h38.4", "v-76.8" ] ],
+    [ "led3:C", "gnd2:GND", "black", [ "v0" ] ],
+    [ "led4:C", "gnd2:GND", "black", [ "v0" ] ],
+    [ "btn4:1.r", "gnd2:GND", "black", [ "v0", "h38.6" ] ],
+    [ "btn3:1.r", "gnd2:GND", "black", [ "v-38.4", "h125" ] ],
+    [ "btn2:2.l", "gnd1:GND", "black", [ "h-9.6", "v-67", "h-105.6" ] ]
+  ],
+  "dependencies": {}
+}
+\end{lstlisting}
+    \subsubsection*{Archivo Main.py}
+    \needspace{15\baselineskip}
+\begin{lstlisting}[language=Python, caption=Archivo Main]
+from machine import Pin, PWM
+import ujson
+import utime as time
+import dht
+from led_pwm import LED
+from helpers import WiFiConnector, MqttConnector
+from helpers import ChannelTypes, DeviceType, DevicesManager
+from helpers import SwitchType, SwitchDeviceManager
+from helpers import DelayedMethod, APIClient
+from env_settings import *
+
+# MQTT Setup
+MQTT_CLIENT_ID = DEVICE_ID
+MQTT_ENABLE_SSL = False
+MQTT_SSL_PARAMS = {'server_hostname': MQTT_BROKER}
+
+MQTT_TELEMETRY_TOPIC = "mqtt.publish.TELEMETRY" #'mqtt.publish.{0}'.format(ChannelTypes.TELEMETRY)
+MQTT_CONTROL_TOPIC = '{0}.{1}.#'.format(GROUP_ID, DEVICE_ID)
+MQTT_CONTROL_TOPIC = MQTT_CONTROL_TOPIC.replace(" ", "")
+
+# Setup Device Params
+RED_LED_DEVICE = {"name": "RED_LED_" + DEVICE_NAME.upper(), "type": DeviceType.LED, "pin": 12, "id": RED_LED_DEVICE_ID}
+BLUE_LED_DEVICE = {"name": "BLUE_LED_" + DEVICE_NAME.upper(), "type": DeviceType.LED, "pin": 13, "id": BLUE_LED_DEVICE_ID}
+RED_FAN_DEVICE = {"name": "RED_FAN_" + DEVICE_NAME.upper(), "type": DeviceType.MOTOR, "pin": 5, "id": RED_FAN_DEVICE_ID}
+BLUE_FAN_DEVICE = {"name": "BLUE_FAN_" + DEVICE_NAME.upper(), "type": DeviceType.MOTOR, "pin": 18, "id": BLUE_FAN_DEVICE_ID}
+THERMOMETER_DEVICE = {"name": "THERMOMETER_" + DEVICE_NAME.upper(), "type": DeviceType.THERMOMETER, "pin": 15, "id": THERMOMETER_DEVICE_ID}
+HUMIDITY_DEVICE = {"name": "HUMIDITY_" + DEVICE_NAME.upper(), "type": DeviceType.HUMIDITY, "pin": 15, "id": HUMIDITY_DEVICE_ID}
+
+# Create Devices
+devices_manager = DevicesManager(gateway_name=DEVICE_NAME, gateway_id=DEVICE_ID)
+devices_manager.create_device(RED_LED_DEVICE)
+devices_manager.create_device(BLUE_LED_DEVICE)
+if USE_FAN:
+  devices_manager.create_device(RED_FAN_DEVICE)
+  devices_manager.create_device(BLUE_FAN_DEVICE)
+  RED_FAN = devices_manager.get_controller(RED_FAN_DEVICE["name"])
+  BLUE_FAN = devices_manager.get_controller(BLUE_FAN_DEVICE["name"])
+
+if USE_DHT_SENSOR:
+  devices_manager.create_device(THERMOMETER_DEVICE)
+  devices_manager.create_device(HUMIDITY_DEVICE)
+
+
+# LED/LAMP Setup
+RED_LED = devices_manager.get_controller(RED_LED_DEVICE["name"])
+BLUE_LED = devices_manager.get_controller(BLUE_LED_DEVICE["name"])
+FLASH_LED = Pin(2, Pin.OUT)
+
+
+# Turn On LEDs
+RED_LED.on(100)
+BLUE_LED.on(100)
+if USE_FAN:
+  RED_FAN.on(25)
+  BLUE_FAN.on(25)
+
+
+
+
+
+
+# -------------- Application Logic --------------
+
+# Connect to WiFi
+wifi_connector = WiFiConnector(WIFI_SSID, WIFI_PASSWORD)
+wifi_connector.connect()
+
+# Register Devices to IoTConnector Cloud
+api_client = APIClient("http://{0}:{1}".format(URL_HOST, URL_PORT))
+provision_device_data = devices_manager.get_provisioning_device_data(DEVICE_SECRETE)
+url_params = "/api/v1/devices/provision/group/{0}/{1}".format(GROUP_ID, API_KEY)
+provisioning_response = api_client.post(url_params, data=provision_device_data)
+print("Provisioned Devices: ", provisioning_response)
+
+
+# Connect to MQTT
+def did_recieve_subscription_message(topic, message):
+  print("\n** message received **")
+  print("topic: ", topic)
+  print("message: ", message)
+  received_command = devices_manager.get_device_command(topic, message)
+  devices_manager.run_device_command(received_command)
+  # print("aaaaaa: ", ujson.dumps(received_command))
+
+
+mqtt_connector = MqttConnector(MQTT_CLIENT_ID, MQTT_BROKER, MQTT_USER_NAME, MQTT_PASSWORD, MQTT_ENABLE_SSL, MQTT_SSL_PARAMS)
+mqtt_connector.connect(did_recieve_subscription_message)
+mqtt_connector.subscribe(MQTT_CONTROL_TOPIC)
+
+# Turn Off LEDs
+RED_LED.off()
+BLUE_LED.off()
+if USE_FAN:
+  RED_FAN.off()
+  BLUE_FAN.off()
+
+# --------- 
+
+RED_LED_SWITCH = SwitchDeviceManager(33, SwitchType.TOGGLE, RED_LED)
+BLUE_LED_SWITCH = SwitchDeviceManager(32, SwitchType.TOGGLE, BLUE_LED)
+
+RED_FAN_SWITCH = None
+BLUE_FAN_SWITCH = None
+if USE_FAN:
+  RED_FAN_SWITCH = SwitchDeviceManager(21, SwitchType.INCREMENT, RED_FAN)
+  BLUE_FAN_SWITCH = SwitchDeviceManager(19, SwitchType.INCREMENT, BLUE_FAN)
+
+
+# push sensor data to cloud via mqtt
+def push_data():
+    telemetry_data = {
+        "type": ChannelTypes.TELEMETRY,
+        "data": devices_manager.get_data()
+    }
+
+    telemetry_data_json = ujson.dumps(telemetry_data)
+    mqtt_connector.publish(MQTT_TELEMETRY_TOPIC, telemetry_data_json)
+    # print("data: ", devices_manager.get_devices_list_json())
+
+
+push_device_data_delay = DelayedMethod(push_data, 10)
+
+# send data on connection
+push_data()
+
+while True:
+  push_device_data_delay.run()
+  mqtt_connector.check_incoming_msg()
+  time.sleep(0.1)
+
+\end{lstlisting}
+
+
+    \subsubsection*{Archivo led\_pwm.py}
+    \needspace{15\baselineskip}
+\begin{lstlisting}[language=Python, caption=Archivo de control del LED]
+from machine import Pin, PWM
+
+class LED:
+    def __init__(self, pin_num, freq=1500):
+        self.pin_num = pin_num
+        self.freq = freq
+        self.pwm = PWM(Pin(pin_num), freq=freq)
+        self.is_on = False  # Track the LED state
+        self.min_percent = 0
+        self.percent = 0  # Track the brightness state
+        self.duty = int(self.min_percent / 100 * 1023)  # Track the duty state
+        
+    def on(self, percentage = 0):
+        if percentage > 0:
+            self.percent = percentage
+            self.duty = int(percentage / 100 * 1023)
+            
+        self.pwm.duty(self.duty)  # Set duty cycle to 1023 (maximum value) to fully turn on the LED
+        self.is_on = True  # Update LED state
+        
+    def off(self):
+        self.pwm.duty(0)  # Set duty cycle to 0 to fully turn off the LED
+        self.is_on = False  # Update LED state
+        
+    def set_brightness(self, percentage):
+        if percentage > 0:
+            # Convert percentage to a duty cycle value between 0 and 1023 (100%)
+            pvalue = percentage if percentage > self.min_percent else self.min_percent
+            self.percent = percentage
+            self.duty = int(pvalue / 100 * 1023)
+            if self.is_on == True:
+                self.pwm.duty(self.duty)  # Set duty cycle to the calculated value
+
+        else:
+            self.off()
+        
+
+    def get_brightness(self):
+        # when off, return brightness value as 0
+        if self.is_on == False:
+            return 0
+
+        return self.percent
+
+    def set_value(self, state):
+        if state == 0:
+            self.off()
+        elif state == 1:
+            self.on()
+        else:
+            raise ValueError("Invalid state value. Use 0 for off and 1 for on.")
+            
+    def value(self):
+        return 1 if self.is_on == True else 0  # Return current LED state (1 if on, 0 if off)
+                
+    def deinit(self):
+        self.pwm.deinit()  # Deinitialize the PWM to clean up
+\end{lstlisting}
+
+    \subsubsection*{Archivo Helper.py}
+    \needspace{15\baselineskip}
+\begin{lstlisting}[language=Python, caption=Archivo Helper]
+from machine import Pin, PWM, Timer
+import network
+import utime as time
+from umqtt.simple import MQTTClient
+from led_pwm import LED
+import dht
+import ntptime
+import ujson
+import urandom
+import urequests as requests
+
+# ------------ HELPER METHODS ----------------- #
+# Synchronize with NTP server
+def synchronize_ntp_time():
+    # Specify a different NTP server (e.g., Google's NTP server)
+    ntptime.host = "time.google.com"
+    # Synchronize with the NTP server
+    ntptime.settime()
+
+# Get UTC Date String
+def get_formatted_time_string():
+    # Get the current time in UTC
+    current_time_utc = time.gmtime()
+
+    # Format the time
+    formatted_time = "{:04d}-{:02d}-{:02d}T{:02d}:{:02d}:{:02d}.{:06d}Z".format(
+        current_time_utc[0], current_time_utc[1], current_time_utc[2],
+        current_time_utc[3], current_time_utc[4], current_time_utc[5],
+        current_time_utc[6]
+    )
+
+    return formatted_time
+
+# Generate random UUID
+def generate_uuid():
+    uuid_format = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"
+    uuid = ""
+    for char in uuid_format:
+        if char == "x":
+            uuid += "{:x}".format(urandom.getrandbits(4))
+        elif char == "y":
+            uuid += "{:x}".format(8 | (urandom.getrandbits(3)))
+        else:
+            uuid += char
+    return uuid
+
+
+# ------------ HELPER CLASSES ----------------- #
+# WiFi Connection Manager
+class WiFiConnector:
+    def __init__(self, ssid, password):
+        self.ssid = ssid
+        self.password = password
+        self.wifi_client = None
+
+    def connect(self):
+        # Connect to WiFi
+        self.wifi_client = network.WLAN(network.STA_IF)
+        self.wifi_client.active(True)
+        print("Connecting device to WiFi")
+        self.wifi_client.connect(self.ssid, self.password)
+
+        # Wait until WiFi is Connected
+        while not self.wifi_client.isconnected():
+            print("Connecting...")
+            time.sleep(0.1)
+        print("WiFi Connected!")
+        print(self.wifi_client.ifconfig())
+        synchronize_ntp_time()
+
+        # Print the current time in UTC
+        print("Current Time (UTC): ", get_formatted_time_string())
+
+
+# MQTT Connection Manager
+class MqttConnector:
+    def __init__(self, client_id, broker, user, password, ssl=False, ssl_params=None):
+        self.client_id = client_id
+        self.broker = broker
+        self.user = user
+        self.password = password
+        self.ssl = ssl
+        self.ssl_params = ssl_params
+        self.client = None
+
+
+    def connect(self, did_recieve_callback):
+        print("Connecting to MQTT broker ...")
+        if self.ssl:
+            self.client = MQTTClient(self.client_id, self.broker, user=self.user,
+                                password=self.password, ssl=self.ssl_params, ssl_params=self.ssl_params)
+        else:
+            self.client = MQTTClient(self.client_id, self.broker, user=self.user, password=self.password)
+
+        self.client.set_callback(did_recieve_callback)
+        self.client.connect()
+        print("MQTT broker is Connected.")
+
+        return self.client
+
+    def subscribe(self, topic):
+        self.client.subscribe(topic)
+        print("subscribed to topic = " + topic)
+
+    def publish(self, topic, data):
+        try:
+            print("\nUpdating MQTT Broker...")
+            self.client.publish(topic, data)
+            print("data sent to: ", topic)
+        except:
+            print("ERROR: MQTT client may not be initialized.")
+
+    def check_incoming_msg(self):
+        self.client.check_msg()
+
+# Device Types
+class DeviceType:
+    LED = "LED"
+    THERMOMETER = "THERMOMETER"
+    HUMIDITY = "HUMIDITY"
+    GATEWAY = "GATEWAY"
+    MOTOR = "MOTOR"
+
+# Device Profiles
+class DefaultProfileName:
+    SENSOR = "SENSOR"
+    LED = "LED"
+    LAMP = "LAMP"
+    HUMIDITY = "HUMIDITY"
+    TEMPERATURE = "TEMPERATURE"
+    MOTOR = "MOTOR"
+    DEFAULT = "DEFAULT"
+
+# Device States
+class StateName:
+    STATE = "STATE"
+    BRIGHTNESS = "BRIGHTNESS"
+    TEMPERATURE = "TEMPERATURE"
+    HUMIDITY = "HUMIDITY"
+    SENSOR = "SENSOR"
+    SPEED = "SPEED"
+
+# Device Channel Types
+class ChannelTypes:
+    COMMAND = "COMMAND"
+    TELEMETRY = "TELEMETRY"
+    ALERTS = "ALERTS"
+
+# Devices Manager
+class DevicesManager:
+    def __init__(self, gateway_name, gateway_id):
+        self.gateway_name = gateway_name
+        self.gateway_id = gateway_id
+        self.devices = {}
+        device = {
+            "device_id": self.gateway_id,
+            "device_name": self.gateway_name,
+            "device_type": DeviceType.GATEWAY,
+            "parent": "0",   # Default Gateway Parent = 0
+            "pin": -1,
+            "controller": None
+        }
+        self.devices[self.gateway_name] = device
+
+    def add_device(self, device_id, device_name, device_type, pin):
+        if device_name not in self.devices:
+            controller = self.create_controller(device_type, pin)
+            device = {
+                "device_id": device_id,
+                "device_name": device_name,
+                "device_type": device_type,
+                "pin": pin,
+                "parent": self.gateway_id,
+                "controller": controller
+            }
+            self.devices[device_name] = device
+
+            return device
+        else:
+            raise ValueError("A device with name '{}' already exists. Device Names must be unique.".format(device_name))
+
+    def create_device(self, device_data):
+        return self.add_device(device_data["id"], device_data["name"], device_data["type"], device_data["pin"])
+    
+    def create_controller(self, device_type, pin):
+        if device_type == DeviceType.LED or device_type == DeviceType.MOTOR:
+            return LED(pin)
+        elif device_type == DeviceType.THERMOMETER or device_type == DeviceType.HUMIDITY:
+            DHT_PIN = Pin(pin)
+            dht_sensor = dht.DHT22(DHT_PIN)
+            return dht_sensor
+        
+        return None
+
+    def get_controller(self, device_name):
+        return self.devices[device_name]["controller"]
+
+    def get_devices_list_json(self):
+        return ujson.dumps(self.get_data())
+
+    def get_device_command(self, topic, message):
+        command_message = ujson.loads(message.decode())
+        command_topic = topic.decode().split('/')
+        command_data = {}
+
+        if command_topic[-1] == ChannelTypes.COMMAND:
+            command_data = {
+                "type": ChannelTypes.COMMAND,
+                "group_id": command_topic[0],
+                "parent_id": command_topic[1] if not command_topic[1] == command_topic[-2] else "0",
+                "device_id": command_topic[-2],
+                "commands": command_message,
+            }
+        else:
+            print("** command is not supported **")
+
+        return command_data
+
+    def run_device_command(self, device_command):
+        # if device is not a gatweay
+        if not device_command["parent_id"] == "0":
+            s_device = {}
+            for key, device in self.devices.items():
+                if device["device_id"] == device_command["device_id"]:
+                    s_device = device
+                    self._set_command_for_device(device, device_command)
+                    break
+        else:
+            print("gateway commands are not yet supported")
+
+    def _set_command_for_device(self, device, device_command):
+        states = []
+        for command in device_command["commands"]:
+            command_name = command["name"]
+            command_value = command["value"]
+
+            if device["device_type"] == DeviceType.GATEWAY:
+                print("gateway commands are not yet supported")
+            elif device["device_type"] == DeviceType.LED:
+                if command_name == StateName.STATE:
+                    device["controller"].set_value(1 if command_value == "ON" else 0)
+                elif command_name == StateName.BRIGHTNESS:
+                    command_value_int = int(command_value)
+                    device["controller"].set_value(1 if command_value_int > 0 else 0)
+                    device["controller"].set_brightness(command_value_int)
+            if device["device_type"] == DeviceType.MOTOR:
+                if command_name == StateName.STATE:
+                    device["controller"].set_value(1 if command_value == "ON" else 0)
+                elif command_name == StateName.SPEED:
+                    command_value_int = int(command_value)
+                    device["controller"].set_value(1 if command_value_int > 0 else 0)
+                    device["controller"].set_brightness(command_value_int)
+            elif device["device_type"] == DeviceType.THERMOMETER or device["device_type"] == DeviceType.HUMIDITY:
+                print("** humidity and temperature sensor commands are not yet supported")
+
+    def get_data(self):
+        devices_data_list = []
+        uuid_str = generate_uuid()
+        for key, device in self.devices.items():
+            device_data = {}
+            device_data["device_id"] = device["device_id"]
+            device_data["type"] = device["device_type"]
+            device_data["name"] = device["device_name"]
+            device_data["parent"] = device["parent"]
+            device_data["log_id"] = uuid_str
+            device_data["log_time"] = get_formatted_time_string()
+            device_data["states"] = self.get_device_states(device)
+            devices_data_list.append(device_data)
+        
+        return devices_data_list
+    
+    def get_device_states(self, device):
+        states = []
+        if device["device_type"] == DeviceType.GATEWAY:
+            states.append({"name": StateName.STATE, "value": "ON"})
+        elif device["device_type"] == DeviceType.LED:
+            states.append({"name": StateName.STATE, "value": "ON" if device["controller"].value() == 1 else "OFF"})
+            states.append({"name" : StateName.BRIGHTNESS , "value": device["controller"].get_brightness()})
+        if device["device_type"] == DeviceType.MOTOR:
+            states.append({"name": StateName.STATE, "value": "ON" if device["controller"].value() == 1 else "OFF"})
+            states.append({"name" : StateName.SPEED , "value": device["controller"].get_brightness()})
+        elif device["device_type"] == DeviceType.THERMOMETER or device["device_type"] == DeviceType.HUMIDITY:
+            dht_sensor = device["controller"]
+            dht_sensor.measure()
+            time.sleep(0.1)
+            states.append({"name" : StateName.SENSOR , "value": dht_sensor.temperature() if device["device_type"] == DeviceType.THERMOMETER else dht_sensor.humidity()})
+
+        return states
+
+    def get_provisioning_device_data(self, secrete_key):
+        all_devices = self.get_data()
+        parent_device = {}
+        sub_devices = []
+
+        for device_data in all_devices:
+            p_device_data = self.map_provision_device_data(device_data)
+            if device_data["type"] == DeviceType.GATEWAY:
+                parent_device = p_device_data
+            else:
+                sub_devices.append(p_device_data)
+        
+        response = {
+            "parent_device": parent_device,
+            "sub_devices": sub_devices,
+            "provision_parent": True,
+            "secrete_key": secrete_key
+        }
+
+        return response
+    
+    def map_provision_device_data(self, device_data):
+
+        profile_name = DefaultProfileName.DEFAULT
+        if device_data["type"] == DeviceType.HUMIDITY or device_data["type"] == DeviceType.THERMOMETER:
+            profile_name = DefaultProfileName.SENSOR
+        elif device_data["type"] == DeviceType.LED:
+            profile_name = DefaultProfileName.LED
+        elif device_data["type"] == DeviceType.MOTOR:
+            profile_name = DefaultProfileName.MOTOR
+
+
+        provision_device_data = {
+            "name": device_data["name"],
+            "type": device_data["type"],
+            "parent_id": device_data["parent"],
+            "location": "",
+            "zone": "",
+            "profile_name": profile_name,
+            "id": device_data["device_id"],
+            "is_new": True
+        }
+
+        return provision_device_data
+
+        
+
+# Switch Types
+class SwitchType:
+    TOGGLE = "TOGGLE"
+    INCREMENT = "INCREMENT"
+
+# Switch Device Manager
+class SwitchDeviceManager:
+    def __init__(self, switch_pin, switch_type, pwm_device, increment=25):
+        self.switch = Pin(switch_pin, Pin.IN, Pin.PULL_UP)
+        self.pwm_device = pwm_device
+        self.debounce_timer = Timer(0)
+        self.timer_running = False
+
+        self.switch.irq(trigger=Pin.IRQ_FALLING | Pin.IRQ_RISING, handler=self.handle_switch_interrupt)
+        self.switch_type = switch_type
+        self.increment = increment
+
+        self.switch_state = 1  # Initial switch state (1 for pull-up)
+
+    def handle_switch_interrupt(self, pin):
+        self.debounce_timer.init(mode=Timer.ONE_SHOT, period=50, callback=self.debounce_callback)
+
+        # if not self.timer_running:
+        #     print("bbbbb")
+        #     self.debounce_timer.init(mode=Timer.ONE_SHOT, period=50, callback=self.debounce_callback)
+        #     self.timer_running = True
+
+    def debounce_callback(self, timer):
+        self.timer_running = False
+        current_state = self.switch.value()
+
+        if current_state != self.switch_state:  # Check if switch state has changed
+            self.switch_state = current_state
+            switch_is_pressed_down = 0 # Switch pressed (falling edge)
+            if not current_state == switch_is_pressed_down:  # switch is released
+                if self.switch_type == SwitchType.TOGGLE:
+                    self.toggle_pwm_device()
+                if self.switch_type == SwitchType.INCREMENT:
+                    self.increment_pwm_device()
+
+    def toggle_pwm_device(self):
+        if self.pwm_device.value() == 1:
+            self.pwm_device.off()
+        else:
+            self.pwm_device.on()
+
+    def increment_pwm_device(self):
+        current_percent = self.pwm_device.get_brightness()
+        set_percent = current_percent + self.increment
+
+        if set_percent > 100:
+            set_percent = 0
+
+        if set_percent == 0:
+            self.pwm_device.set_brightness(set_percent)
+            self.pwm_device.off()
+        else:
+            self.pwm_device.on(set_percent)
+            self.pwm_device.set_brightness(set_percent)
+
+
+# DelayedMethod: Run a method after a delay
+class DelayedMethod:
+    def __init__(self, callback, delay_seconds=10):
+        # Keep track of the start time
+        self.start_time = time.time()
+        self.callback = callback
+        self.delay_seconds = delay_seconds
+        self.current_time = time.time()
+    
+    def run(self):
+        # Check if delayed seconds have passed
+        self.current_time = time.time()
+        if self.current_time - self.start_time >= self.delay_seconds:
+            # Call the delayed method
+            self.callback()
+            # Reset the start time for the next interval
+            self.start_time = self.current_time
+
+
+
+
+class APIClient:
+    def __init__(self, base_url):
+        self.base_url = base_url
+
+    def _make_request(self, method, endpoint, data=None, params="", headers=None, bearerToken=""):
+        url = self.base_url + endpoint
+        headers = headers or {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + bearerToken,  # Include any other headers as needed
+        }
+        response = None
+
+        print("url = ", url)
+
+        try:
+            if method == "GET" and params:
+                response = requests.get(url, params=params, headers=headers)
+            elif method == "POST":
+                response = requests.post(url, json=data, headers=headers)
+            else:
+                raise ValueError("Unsupported HTTP method")
+
+            # Check if the status code is in the 2xx range (success)
+            if 200 <= response.status_code < 300:
+                return ujson.loads(response.text)
+            else:
+                raise Exception("HTTP Error - Status Code:", response.status_code, "Error Message:", response.text)
+        except Exception as e:
+            print("An error occurred...")
+            raise e
+        finally:
+            if not response == None:
+                response.close()
+
+    def get(self, endpoint, params=None, headers=None):
+        return self._make_request("GET", endpoint, params=params, headers=headers)
+
+    def post(self, endpoint, data=None, headers=None):
+        return self._make_request("POST", endpoint, data=data, headers=headers)
+\end{lstlisting}
+    
+    \subsubsection*{Archivo env\_settings.py}
+    \needspace{15\baselineskip}
+\begin{lstlisting}[language=Python, caption=Archivo de conexión]
+# Env Setup
+USE_FAN = True
+USE_DHT_SENSOR = True
+
+# HTTP HOST
+URL_HOST = "xxx.xxx.xxx.xxx" # "Please Enter your HOST IP"
+URL_PORT = 7000
+
+# Device Setup
+GROUP_ID = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # "Please Enter your GROUP ID"
+ESP_32_GATEWAY_ID = "4cc59a28-2413-441c-93e5-82b341ea71a2"  # "Please Enter your DEVICE ID"
+DEVICE_NAME = "wokwi001"    # "Please Enter your Device Name"
+DEVICE_SECRETE = DEVICE_NAME + "_ekMh2ZfG2vLgGg0Q"
+
+# WiFi Setup
+WIFI_SSID = "Wokwi-GUEST"
+WIFI_PASSWORD = ""
+
+# MQTT Setup
+MQTT_BROKER = URL_HOST  # "Please Enter your MQTT BROKER ID"
+MQTT_USER_NAME = ESP_32_GATEWAY_ID
+MQTT_PASSWORD = DEVICE_SECRETE
+
+# Setup Device ID Params
+DEVICE_ID = ESP_32_GATEWAY_ID
+RED_LED_DEVICE_ID = "63a0a6a7-4c45-46d4-bdc9-0089907ffeab"
+BLUE_LED_DEVICE_ID = "833e7332-f92c-4ba2-891f-7d50027b6dc6"
+RED_FAN_DEVICE_ID = "46d692ad-294e-4874-9dbd-45a979451265"
+BLUE_FAN_DEVICE_ID = "f245b522-7510-47b8-88ea-d3728b03f986"
+THERMOMETER_DEVICE_ID = "48662f4b3-e03f-48ba-b2a6-f101567d8d4e"
+HUMIDITY_DEVICE_ID = "4754e380-a7c0-407b-b4da-c2122335d521"
+
+# Keys
+API_KEY = "sPpqDue2OWqliMZGxmMRW4TK8R0uPUjlKe3i7S1oiJ5DfqgkQ9BvDRPT9sxOjN3y"
+\end{lstlisting}
+
+\end{document}
